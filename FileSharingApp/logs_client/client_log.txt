@@ -1,31 +1,16 @@
-[2025-04-10 13:37:17.173758] Log_Client file is created
-[2025-04-10 13:37:17.175758] Connected to server at 10.21.129.224:5050
-[2025-04-10 13:37:38.237307] Command issued: upload test0.txt
-[2025-04-10 13:37:38.238322] Uploading file: test0.txt (5320 bytes)
-[2025-04-10 13:37:38.849865] Upload complete: test0.txt
-[2025-04-10 13:37:42.245753] Command issued: EXIT
-[2025-04-10 13:37:42.247755] Connection closed.
-[2025-04-10 17:14:21.566175] Connected to server at 10.21.129.224:5050
-[2025-04-10 17:14:42.291317] Command issued: upload test0.text
-[2025-04-10 17:14:42.292309] UPLOAD FAILED: File not found: test0.text
-[2025-04-10 17:14:55.133829] Command issued: upload test0.txt
-[2025-04-10 17:14:55.134832] Uploading file: test0.txt (5320 bytes)
-[2025-04-10 17:14:55.743448] Upload complete: test0.txt
-[2025-04-10 17:28:26.970302] Command issued: EXIT
-[2025-04-10 17:28:26.972014] Connection closed.
-[2025-04-10 17:28:29.732680] Connected to server at 10.21.129.224:5050
-[2025-04-10 17:29:16.154207] Command issued: download test0.txt
-[2025-04-10 17:30:37.490740] Connected to server at 10.21.129.224:5050
-[2025-04-10 17:30:47.672839] Command issued: download test0.txt
-[2025-04-10 17:30:47.674864] Downloading file: test0.txt (5320 bytes)
-[2025-04-10 17:30:48.282264] Download complete: test0.txt
-[2025-04-10 17:41:47.444941] Command issued: EXIT
-[2025-04-10 17:41:47.447481] Connection closed.
-[2025-04-10 17:41:49.659439] Connected to server at 10.21.129.224:5050
-[2025-04-10 17:41:52.727458] Command issued: LIST
-[2025-04-10 17:41:52.730459] Listed files on server
-[2025-04-10 17:43:00.341976] Command issued: EXIT
-[2025-04-10 17:43:00.343974] Connection closed.
-[2025-04-10 17:43:01.769801] Connected to server at 10.21.129.224:5050
-[2025-04-10 17:43:04.648509] Command issued: LIST
-[2025-04-10 17:43:04.651508] Listed files on server
+[2025-04-10 22:56:35.600373] Client log file created
+[2025-04-10 22:56:35.601878] Connected to server at 10.21.175.130:5050
+[2025-04-10 22:56:41.437880] Command: upload test0.txt
+[2025-04-10 22:56:41.438820] Uploading file: test0.txt (144 bytes)
+[2025-04-10 22:56:41.490871] Upload complete: test0.txt
+[2025-04-10 22:56:50.233801] Command: upload test0.txt
+[2025-04-10 22:56:50.234734] Uploading file: test0.txt (144 bytes)
+[2025-04-10 22:56:50.286415] Upload complete: test0.txt
+[2025-04-10 22:57:30.593525] Command: download test0.txt
+[2025-04-10 22:57:30.594637] Downloading file: test0.txt (144 bytes)
+[2025-04-10 22:57:30.646842] Download complete: test0.txt
+[2025-04-10 22:57:36.063327] Command: download test0.txt
+[2025-04-10 22:57:36.064388] Downloading file: test0.txt (144 bytes)
+[2025-04-10 22:57:36.116065] Download complete: test0.txt
+[2025-04-10 22:58:13.633253] Command: EXIT
+[2025-04-10 22:58:13.635135] Connection closed.
