@@ -1,15 +1,16 @@
-[2025-04-10 22:56:28.685431] Server log file created
-[2025-04-10 22:56:28.687042] Server started and listening for connections
-[2025-04-10 22:56:35.603678] New client connected from ('10.21.175.130', 63764)
-[2025-04-10 22:56:41.440854] File received: test0.txt from ('10.21.175.130', 63764)
-[2025-04-10 22:56:50.236450] File received: test0_v2.txt from ('10.21.175.130', 63764)
-[2025-04-10 22:57:30.595009] Sent test0.txt to ('10.21.175.130', 63764)
-[2025-04-10 22:57:36.064708] Sent test0.txt to ('10.21.175.130', 63764)
-[2025-04-10 22:58:13.634400] Connection closed with ('10.21.175.130', 63764)
-[2025-04-10 23:40:49.028675] New client connected from ('10.21.175.130', 64195)
-[2025-04-10 23:42:18.919688] File received: Desktop from ('10.21.175.130', 64195)
-[2025-04-10 23:42:18.923340] Connection closed with ('10.21.175.130', 64195)
-[2025-04-10 23:42:20.875655] New client connected from ('10.21.175.130', 64263)
-[2025-04-10 23:42:49.308490] File received: git.docx from ('10.21.175.130', 64263)
-[2025-04-10 23:46:48.895168] Sent git.docx to ('10.21.175.130', 64263)
-[2025-04-10 23:46:53.723155] Connection closed with ('10.21.175.130', 64263)
+[2025-04-21 19:57:19.971215] Server log file created
+[2025-04-21 19:57:19.972348] Server started and listening for connections
+[2025-04-21 19:59:42.342541] Server started and listening for connections
+[2025-04-21 19:59:56.172780] New client connected from ('10.21.146.204', 58000)
+[2025-04-21 20:00:34.165166] Connection closed with ('10.21.146.204', 58000)
+[2025-04-21 20:02:43.278006] Server started and listening for connections
+[2025-04-21 20:02:48.861355] New client connected from ('10.21.146.204', 58041)
+[2025-04-21 20:03:06.846548] File received: test0.txt from ('10.21.146.204', 58041)
+[2025-04-21 20:03:06.848428] Error with client ('10.21.146.204', 58041): 'charmap' codec can't encode character '\u2705' in position 54: character maps to <undefined>
+[2025-04-21 20:03:06.849441] Connection closed with ('10.21.146.204', 58041)
+[2025-04-21 20:05:07.199346] Server started and listening for connections
+[2025-04-21 20:05:12.564573] New client connected from ('10.21.146.204', 58088)
+[2025-04-21 20:05:18.516347] File received: test0_v2.txt from ('10.21.146.204', 58088)
+[2025-04-21 20:05:18.517660] Hash match for test0_v2.txt ✅
+[2025-04-21 20:05:22.416758] Sent test0.txt to ('10.21.146.204', 58088)
+[2025-04-21 20:05:42.654956] Connection closed with ('10.21.146.204', 58088)

@@ -1,34 +1,18 @@
-[2025-04-10 22:56:35.600373] Client log file created
-[2025-04-10 22:56:35.601878] Connected to server at 10.21.175.130:5050
-[2025-04-10 22:56:41.437880] Command: upload test0.txt
-[2025-04-10 22:56:41.438820] Uploading file: test0.txt (144 bytes)
-[2025-04-10 22:56:41.490871] Upload complete: test0.txt
-[2025-04-10 22:56:50.233801] Command: upload test0.txt
-[2025-04-10 22:56:50.234734] Uploading file: test0.txt (144 bytes)
-[2025-04-10 22:56:50.286415] Upload complete: test0.txt
-[2025-04-10 22:57:30.593525] Command: download test0.txt
-[2025-04-10 22:57:30.594637] Downloading file: test0.txt (144 bytes)
-[2025-04-10 22:57:30.646842] Download complete: test0.txt
-[2025-04-10 22:57:36.063327] Command: download test0.txt
-[2025-04-10 22:57:36.064388] Downloading file: test0.txt (144 bytes)
-[2025-04-10 22:57:36.116065] Download complete: test0.txt
-[2025-04-10 22:58:13.633253] Command: EXIT
-[2025-04-10 22:58:13.635135] Connection closed.
-[2025-04-10 23:40:49.025510] Connected to server at 10.21.175.130:5050
-[2025-04-10 23:42:18.897957] Command: upload C:\Users\RSS\Desktop
-[2025-04-10 23:42:18.899605] Uploading file: Desktop (32768 bytes)
-[2025-04-10 23:42:20.874916] Connected to server at 10.21.175.130:5050
-[2025-04-10 23:42:42.331372] Command: upload C:\Users\RSS\Deskto\git.docx
-[2025-04-10 23:42:42.333064] UPLOAD FAILED: File not found: C:\Users\RSS\Deskto\git.docx
-[2025-04-10 23:42:48.640873] Command: upload C:\Users\RSS\Desktop\git.docx
-[2025-04-10 23:42:48.642674] Uploading file: git.docx (13966 bytes)
-[2025-04-10 23:42:49.366129] Upload complete: git.docx
-[2025-04-10 23:43:14.600824] Command: upload Desktop\git.docx
-[2025-04-10 23:43:14.602604] UPLOAD FAILED: File not found: Desktop\git.docx
-[2025-04-10 23:43:35.623039] Command: upload \Desktop\git.docx
-[2025-04-10 23:43:35.624939] UPLOAD FAILED: File not found: \Desktop\git.docx
-[2025-04-10 23:46:48.892520] Command: download git.docx
-[2025-04-10 23:46:48.894872] Downloading file: git.docx (13966 bytes)
-[2025-04-10 23:46:49.608315] Download complete: git.docx
-[2025-04-10 23:46:53.722493] Command: EXIT
-[2025-04-10 23:46:53.724335] Connection closed.
+[2025-04-21 19:57:32.342859] Client log file created
+[2025-04-21 19:59:56.171967] Connected to server at 10.21.146.204:5050
+[2025-04-21 20:00:20.672346] Command: LIST
+[2025-04-21 20:00:20.675096] Listed files on server
+[2025-04-21 20:02:48.860471] Connected to server at 10.21.146.204:5050
+[2025-04-21 20:03:06.843031] Command: upload test0.txt
+[2025-04-21 20:03:06.844672] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
+[2025-04-21 20:03:06.897491] Upload complete: test0.txt
+[2025-04-21 20:03:43.616055] Command: download  test0.txt
+[2025-04-21 20:05:12.563671] Connected to server at 10.21.146.204:5050
+[2025-04-21 20:05:18.514051] Command: UPLOAD test0.txt
+[2025-04-21 20:05:18.514880] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
+[2025-04-21 20:05:18.566630] Upload complete: test0.txt
+[2025-04-21 20:05:22.414948] Command: DOWNLOAD test0.txt
+[2025-04-21 20:05:22.415917] Downloading file: test0.txt (144 bytes)
+[2025-04-21 20:05:22.468237] Download complete: test0.txt
+[2025-04-21 20:05:34.864043] Command: LIST
+[2025-04-21 20:05:34.865350] Listed files on server

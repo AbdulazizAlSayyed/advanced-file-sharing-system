@@ -2,73 +2,65 @@ import socket
 import os
 import sys
 import time
+import hashlib
 from datetime import datetime
 
-#client configuration
-HOST = '10.21.175.130'
+HOST = '10.21.146.204'
 PORT = 5050
 
-#directories for downloaded files and client logs
 DOWNLOAD_DIR = 'received'
 LOG_DIR = 'logs_client'
 LOG_FILE = os.path.join(LOG_DIR, 'client_log.txt')
 
-#ensure required client directories exist
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 
-#initialize client log file if not found
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, 'w') as f:
         f.write(f"[{datetime.now()}] Client log file created\n")
 
-#method used to log ibr 
 def log(message):
     with open(LOG_FILE, 'a') as f:
         f.write(f"[{datetime.now()}] {message}\n")
 
-#method used to upload file to the server + tracking the progress ibr
+def compute_sha256(filepath):
+    sha256 = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
 def upload_file(sock, filepath):
-    if not os.path.exists(filepath): #by default python will look into the working directory ibr 
+    if not os.path.exists(filepath):
         print(f"File not found: {filepath}")
         log(f"UPLOAD FAILED: File not found: {filepath}")
         return
 
-    #getting the name of the file ibr 
     filename = os.path.basename(filepath)
     filesize = os.path.getsize(filepath)
+    filehash = compute_sha256(filepath)     #This uses the full function we discussed earlier to compute a unique SHA-256 hash of the file.
 
-    log(f"Uploading file: {filename} ({filesize} bytes)")
-    #sending the filename and the size of the file we want to upload to the server ibr 
-    sock.send(f"UPLOAD {filename} {filesize}".encode())
+    log(f"Uploading file: {filename} ({filesize} bytes) with SHA-256: {filehash}")
+    sock.send(f"UPLOAD {filename} {filesize} {filehash}".encode())
 
-# ✅ Fix: receive only once
     recv_ack = sock.recv(1024).decode()
 
-#recieve ack from the server telling that the server is ready to recieve the file ibr 
     if recv_ack == "READY_REC":
         bytes_sent = 0
         chunk_size = 1024
-        count_chunks_sent = 0
 
         with open(filepath, 'rb') as f:
-            #while loop to send the file as chunks ibr 
             while bytes_sent < filesize:
-                #read from the file a chuck of chunksize = to chunksize defined ibr
                 chunk = f.read(chunk_size)
                 if not chunk:
                     break
-                #sending the chucnk until size 1024 bytes ibr
                 sock.sendall(chunk)
                 bytes_sent += len(chunk)
-                count_chunks_sent += 1
 
-
-                #showing the progress ibr 
                 percent = (bytes_sent / filesize) * 100
                 sys.stdout.write(f"\rUploading: {percent:.2f}%")
                 sys.stdout.flush()
-                time.sleep(0.05)  # optional visual delay
+                time.sleep(0.05)
 
         log(f"Upload complete: {filename}")
         print(f"\nUploaded {filename}")
@@ -76,21 +68,17 @@ def upload_file(sock, filepath):
         log(f"UPLOAD FAILED: Server not ready for {filename}")
         print("Server did not accept the upload request.")
 
-#download file helper ibr
 def download_file(sock, filename):
-    #telling the server "I want to download file with filename if exists" ibr
     sock.send(f"DOWNLOAD {filename}".encode())
     size_data = sock.recv(1024).decode()
 
-    #checking for file exitance form the server message ibr
     if size_data == "ERROR FILE NOT FOUND":
         print("The file does not exist on the server.")
         log(f"DOWNLOAD FAILED: {filename} not found on server")
         return
 
-    #size is the expected size ibr
     filesize = int(size_data)
-    sock.send("READY_TO_REC".encode()) #seding ack to the server informig it that the client is ready to recv ibr
+    sock.send("READY_TO_REC".encode())
     log(f"Downloading file: {filename} ({filesize} bytes)")
 
     filepath = os.path.join(DOWNLOAD_DIR, filename)
@@ -105,7 +93,6 @@ def download_file(sock, filename):
             f.write(chunk)
             bytes_received += len(chunk)
 
-            # this is for the progress bar ibr
             percent = (bytes_received / filesize) * 100
             sys.stdout.write(f"\rDownloading: {percent:.2f}%")
             sys.stdout.flush()
@@ -114,7 +101,6 @@ def download_file(sock, filename):
     log(f"Download complete: {filename}")
     print(f"\nDownloaded {filename}")
 
-#method used to list the files available on the server ibr
 def list_available_files(sock):
     sock.send("LIST".encode())
     if sock.recv(1024).decode() != "ACK_LIST":
@@ -122,12 +108,10 @@ def list_available_files(sock):
         return
 
     sock.send("READY_FOR_LIST".encode())
-    #receive and print the files list ibr
     files = sock.recv(4096).decode()
     print("Files available on the server:\n" + files)
     log("Listed files on server")
 
-#main function ibr
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -138,9 +122,7 @@ def main():
         print("Failed to connect to the server.")
         return
 
-    # To allow the user make multiple manipulations  ibr
     while True:
-        # to clean the input and remove the leading and ending space in the input use .strip() ibr
         cmd = input("\nCommands:\n- LIST\n- UPLOAD <filepath>\n- DOWNLOAD <filename>\n- EXIT\nEnter command: ").strip()
 
         if cmd.upper() == "LIST":
@@ -175,6 +157,5 @@ def main():
     sock.close()
     log("Connection closed.")
 
-#entry point ibr
 if __name__ == "__main__":
     main()
