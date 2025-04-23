@@ -45,7 +45,7 @@ def generate_versioned_filename(directory, filename):
 def handle_upload(conn, parts, addr): 
     filename = parts[1]                  # e.g., "test0.txt"
     filesize = int(parts[2])             # e.g., 144
-    client_hash = parts[3]               # hash sent by client
+    client_hash = parts[3]     #1 Transfer Corruption Prevention         # hash sent by client
 
    # This ensures no overwrite — adds _v2 if needed
     filename = generate_versioned_filename(FILES_DIR, filename)
@@ -67,10 +67,10 @@ def handle_upload(conn, parts, addr):
 
     log(f"File received: {filename} from {addr}")# Log successful reception
     # Server computes SHA-256 hash of the received file
-    server_hash = compute_sha256(filepath)
-    
+    server_hash = compute_sha256(filepath) #1Transfer Corruption Prevention
+        
     # Compare server's hash to what the client sent
-    if server_hash == client_hash:
+    if server_hash == client_hash:  #1 Transfer Corruption Prevention     #After receiving the file, the server recomputes the hash using the same method, and checks:
         log(f"Hash match for {filename} ok")
     else:
         log(f"Hash mismatch for {filename} ❌ Possible corruption")
@@ -80,8 +80,17 @@ def download_file_handler(conn, cmd_parts, addr):
     filepath = f"{FILES_DIR}/{filename}"
 
     if os.path.exists(filepath):
-        size = os.path.getsize(filepath)
+        filehash = compute_sha256(filepath) #2. Storage Corruption Prevention        #  Calculate file hash
+        conn.send(filehash.encode())  #  Send hash first
+        ack = conn.recv(1024).decode()
+        if ack != "HASH_RECEIVED":
+            log(f"Client did not acknowledge hash, download aborted.")
+            return
+
+#Then send file size
+        size = os.path.getsize(filepath)            
         conn.send(f"{size}".encode())
+
         recv_ack = conn.recv(1024)
         if recv_ack == b"READY_TO_REC":
             with open(filepath, 'rb') as f:
