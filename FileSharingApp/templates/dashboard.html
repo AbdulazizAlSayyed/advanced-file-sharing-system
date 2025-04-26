@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!--CSS file-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>Your role: {{ role }}</p>
+
+        <div class="buttons">
+            <!-- Upload button -->
+            <a href="/upload"><button>Upload File</button></a>
+            <!-- Download button -->
+            <a href="/download"><button>Download File</button></a>
+
+            <!-- Only show "View Logs" button if the user is an admin -->
+            {% if role == 'admin' %}
+            <a href="/logs"><button>View Logs</button></a>
+            {% endif %}
+            <a href="/logout"><button>Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>

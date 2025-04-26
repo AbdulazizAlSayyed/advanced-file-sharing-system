@@ -1,0 +1,9 @@
+[2025-04-27 00:11:24] Server started and listening for connections
+[2025-04-27 00:11:44] New client connected from ('10.21.134.17', 51349)
+[2025-04-27 00:11:44] Connection closed with ('10.21.134.17', 51349)
+[2025-04-27 00:13:12] New client connected from ('10.21.134.17', 51365)
+[2025-04-27 00:13:12] File received: Project_Sp24_25.pdf from ('10.21.134.17', 51365)
+[2025-04-27 00:13:13] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 00:13:13] Connection closed with ('10.21.134.17', 51365)
+[2025-04-27 00:20:24] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 00:20:24] Server socket closed.

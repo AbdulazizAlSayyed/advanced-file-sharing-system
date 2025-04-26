@@ -1,0 +1,75 @@
+/* basic styling for the web pages*/
+
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+.login-form {
+    width: 300px;
+    margin: 100px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+#login{
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+.alert.success { color: green; }
+.alert.danger { color: red; }
+
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.dashboard h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.dashboard p {
+    font-size: 18px;
+    color: #555;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.buttons a button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons a button:hover {
+    background-color: #45a049;
+}
+
+.buttons a {
+    text-decoration: none;
+}

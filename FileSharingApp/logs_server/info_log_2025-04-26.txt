@@ -1,0 +1,50 @@
+[2025-04-26 15:05:26] Server started and listening for connections
+[2025-04-26 15:05:29] New client connected from ('10.21.134.83', 50673)
+[2025-04-26 15:05:35] File received: abd.txt from ('10.21.134.83', 50673)
+[2025-04-26 15:05:35] Connection closed with ('10.21.134.83', 50673)
+[2025-04-26 15:06:08] New client connected from ('10.21.134.83', 50696)
+[2025-04-26 15:06:19] File received: abd_v2.txt from ('10.21.134.83', 50696)
+[2025-04-26 15:06:19] Hash match for abd_v2.txt ok
+[2025-04-26 15:09:00] Sent abd.txt to ('10.21.134.83', 50696)
+[2025-04-26 15:09:01] Connection closed with ('10.21.134.83', 50696)
+[2025-04-26 15:09:14] New client connected from ('10.21.134.83', 50730)
+[2025-04-26 15:09:15] Sent abd.txt to ('10.21.134.83', 50730)
+[2025-04-26 15:09:30] Connection closed with ('10.21.134.83', 50730)
+[2025-04-26 15:09:48] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 15:09:48] Server socket closed.
+[2025-04-26 15:09:50] Server started and listening for connections
+[2025-04-26 15:09:58] New client connected from ('10.21.134.83', 50736)
+[2025-04-26 15:10:18] Sent abd_v2.txt to ('10.21.134.83', 50736)
+[2025-04-26 15:10:19] Connection closed with ('10.21.134.83', 50736)
+[2025-04-26 15:10:27] New client connected from ('10.21.134.83', 50742)
+[2025-04-26 15:10:28] Sent abd_v2.txt to ('10.21.134.83', 50742)
+[2025-04-26 15:11:15] Connection closed with ('10.21.134.83', 50742)
+[2025-04-26 15:11:23] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 15:11:23] Server socket closed.
+[2025-04-26 15:11:28] Server started and listening for connections
+[2025-04-26 15:11:44] New client connected from ('10.21.134.83', 50749)
+[2025-04-26 15:12:03] Sent abd_v2.txt to ('10.21.134.83', 50749)
+[2025-04-26 15:14:43] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 15:14:43] Server socket closed.
+[2025-04-26 15:31:21] Server started and listening for connections
+[2025-04-26 15:31:24] New client connected from ('10.21.134.83', 51021)
+[2025-04-26 15:31:52] File received: test0.txt from ('10.21.134.83', 51021)
+[2025-04-26 15:31:52] Hash match for test0.txt ok
+[2025-04-26 15:31:54] File received: test0_v2.txt from ('10.21.134.83', 51021)
+[2025-04-26 15:31:54] Hash match for test0_v2.txt ok
+[2025-04-26 15:32:14] File received: test0_v3.txt from ('10.21.134.83', 51021)
+[2025-04-26 15:32:14] Hash match for test0_v3.txt ok
+[2025-04-26 15:33:58] Connection closed with ('10.21.134.83', 51021)
+[2025-04-26 15:34:00] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 15:34:00] Server socket closed.
+[2025-04-26 15:34:02] Server started and listening for connections
+[2025-04-26 15:34:06] New client connected from ('10.21.134.83', 51054)
+[2025-04-26 15:34:14] File received: test0.txt from ('10.21.134.83', 51054)
+[2025-04-26 15:34:14] Hash match for test0.txt ok
+[2025-04-26 15:34:41] File received: test0.txt from ('10.21.134.83', 51054)
+[2025-04-26 15:34:41] Hash match for test0.txt ok
+[2025-04-26 15:35:26] File received: test0_v4.txt from ('10.21.134.83', 51054)
+[2025-04-26 15:35:26] Hash match for test0_v4.txt ok
+[2025-04-26 15:35:47] Connection closed with ('10.21.134.83', 51054)
+[2025-04-26 15:35:52] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 15:35:52] Server socket closed.
