@@ -93,7 +93,14 @@ def upload():
         finally:
             os.remove(filepath)  #temp file removed after succesfull upload
 
-        return redirect(url_for('upload'))
+        return '', 200 #tell JavaScript the upload succeeded
+    
+    # #after upload success/failure
+    # uploaded = request.args.get('uploaded')
+    # if uploaded == 'true':
+    #     flash('✅ File uploaded successfully!', 'success')
+    # elif uploaded == 'false':
+    #     flash('❌ Upload failed. Please try again.', 'danger')
 
     return render_template('upload.html')
 

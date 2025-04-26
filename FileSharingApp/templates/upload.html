@@ -10,15 +10,71 @@
     <div class="dashboard">
         <h1>Upload a File</h1>
 
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" required><br><br>
+        <!-- success or error -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" required><br><br>
             <button type="submit">Upload</button>
         </form>
+
+        <!-- Progress bar (hidden at first) -->
+        <div id="progressBar" style="display:none; margin-top:20px;">
+            <div style="width: 100%; background-color: #ddd;">
+                <div id="progress" style="width: 0%; height: 30px; background-color: #4CAF50; text-align:center; color:white;">0%</div>
+            </div>
+        </div>
 
         <div class="buttons">
             <a href="/dashboard"><button>Back to Dashboard</button></a>
         </div>
     </div>
+
+    <!-- to update progress of progress bar-->
+    <script>
+        const form = document.getElementById('uploadForm');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) return;
+    
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload', true);
+    
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    const percentComplete = (e.loaded / e.total) * 100;
+                    progress.style.width = percentComplete + '%';
+                    progress.innerHTML = Math.round(percentComplete) + '%';
+                }
+            };
+    
+            xhr.onloadstart = function() {
+                progressBar.style.display = 'block';
+            };
+    
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    // show a flash message using a parameter when reloading
+                    window.location.href = "/upload?uploaded=true";
+                } else {
+                    window.location.href = "/upload?uploaded=false";
+                }
+            };
+    
+            const formData = new FormData();
+            formData.append('file', file);
+            xhr.send(formData);
+        });
+    </script>
 
 </body>
 </html>
