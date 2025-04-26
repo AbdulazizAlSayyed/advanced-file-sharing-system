@@ -93,6 +93,10 @@ def handle_upload(conn, parts, addr):
 
 def download_file_handler(conn, cmd_parts, addr):
     filename = cmd_parts[1]
+    if len(cmd_parts) >= 3:
+        already_have = int(cmd_parts[2])
+    else:
+        already_have = 0
     filepath = f"{FILES_DIR}/{filename}"
 
     if os.path.exists(filepath):
@@ -110,7 +114,12 @@ def download_file_handler(conn, cmd_parts, addr):
         recv_ack = conn.recv(1024)
         if recv_ack == b"READY_TO_REC":
             with open(filepath, 'rb') as f:
-                conn.sendfile(f)
+                f.seek(already_have)  # 🛑 Skip already downloaded part
+                while True:
+                    chunk = f.read(1024)
+                    if not chunk:
+                        break
+                    conn.sendall(chunk)
         log(f"Sent {filename} to {addr}")
     else:
         conn.send("ERROR FILE NOT FOUND".encode())

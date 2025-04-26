@@ -1,1 +1,6 @@
-[2025-04-26 14:15:01] ERROR FILE NOT FOUND: test01.txt requested by ('10.21.134.83', 49380)
+[2025-04-26 15:05:35] Hash mismatch for abd.txt ❌ Possible corruption
+[2025-04-26 15:08:54] ERROR FILE NOT FOUND: C:\Users\RSS\Desktop\abd.txt requested by ('10.21.134.83', 50696)
+[2025-04-26 15:09:01] Error with client ('10.21.134.83', 50696): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-26 15:09:30] Error with client ('10.21.134.83', 50730): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-26 15:10:19] Error with client ('10.21.134.83', 50736): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-26 15:11:15] Error with client ('10.21.134.83', 50742): [WinError 10054] An existing connection was forcibly closed by the remote host

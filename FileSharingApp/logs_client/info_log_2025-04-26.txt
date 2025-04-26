@@ -1,15 +1,25 @@
-[2025-04-26 14:14:42] Connected to server at 10.21.134.83:5050
-[2025-04-26 14:14:45] Command: LIST
-[2025-04-26 14:14:45] Listed files on server
-[2025-04-26 14:14:50] Command: upload test0.txt
-[2025-04-26 14:14:50] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
-[2025-04-26 14:14:50] Upload complete: test0.txt
-[2025-04-26 14:14:58] Command: download test0.txt
-[2025-04-26 14:14:58] Downloading file: test0.txt (144 bytes)
-[2025-04-26 14:14:58] Download complete: test0.txt
-[2025-04-26 14:14:58] Hash match after download: test0.txt
-[2025-04-26 14:15:01] Command: download test01.txt
-[2025-04-26 14:15:17] Command: LIST
-[2025-04-26 14:15:17] Listed files on server
-[2025-04-26 14:15:20] Command: EXIT
-[2025-04-26 14:15:20] Connection closed.
+[2025-04-26 15:05:29] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:05:34] Command: upload C:\Users\RSS\Desktop\abd.txt
+[2025-04-26 15:05:34] Uploading file: abd.txt (157056 bytes) with SHA-256: 34e441f6ee01408399c7e2932c771dd062b85c2ae701f27ed4613afa7df10641
+[2025-04-26 15:06:08] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:06:11] Command: upload C:\Users\RSS\Desktop\abd.txt
+[2025-04-26 15:06:11] Uploading file: abd.txt (157056 bytes) with SHA-256: 34e441f6ee01408399c7e2932c771dd062b85c2ae701f27ed4613afa7df10641
+[2025-04-26 15:06:19] Upload complete: abd.txt
+[2025-04-26 15:08:54] Command: download C:\Users\RSS\Desktop\abd.txt
+[2025-04-26 15:09:00] Command: download abd.txt
+[2025-04-26 15:09:00] Downloading file: abd.txt (20493 bytes)
+[2025-04-26 15:09:14] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:09:15] Command: download abd.txt
+[2025-04-26 15:09:15] Downloading file: abd.txt (20493 bytes)
+[2025-04-26 15:09:58] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:10:18] Command: download abd_v2.txt
+[2025-04-26 15:10:18] Downloading file: abd_v2.txt (157056 bytes)
+[2025-04-26 15:10:27] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:10:28] Command: download abd_v2.txt
+[2025-04-26 15:10:28] Downloading file: abd_v2.txt (157056 bytes)
+[2025-04-26 15:11:44] Connected to server at 10.21.134.83:5050
+[2025-04-26 15:12:03] Command: download abd_v2.txt
+[2025-04-26 15:12:03] Downloading file: abd_v2.txt (157056 bytes)
+[2025-04-26 15:12:10] Download complete: abd_v2.txt
+[2025-04-26 15:12:10] Hash match after download: abd_v2.txt
+[2025-04-26 15:13:45] Command: upload  abd_v2.txt

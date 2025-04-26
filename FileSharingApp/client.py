@@ -74,7 +74,7 @@ def upload_file(sock, filepath):
                 percent = (bytes_sent / filesize) * 100
                 sys.stdout.write(f"\rUploading: {percent:.2f}%")
                 sys.stdout.flush()
-                time.sleep(0.05)
+                time.sleep(0.01)
 
         log(f"Upload complete: {filename}")
         print(f"\nUploaded {filename}")
@@ -83,7 +83,13 @@ def upload_file(sock, filepath):
         print("Server did not accept the upload request.")
 
 def download_file(sock, filename):
-    sock.send(f"DOWNLOAD {filename}".encode())  # send request to server
+    filepath = os.path.join(DOWNLOAD_DIR, filename)
+    if os.path.exists(filepath):
+        existing_size = os.path.getsize(filepath)
+    else:
+        existing_size = 0
+
+    sock.send(f"DOWNLOAD {filename} {existing_size}".encode())
 
     server_hash = sock.recv(1024).decode()  # receive server response (could be error)
     
@@ -107,7 +113,7 @@ def download_file(sock, filename):
     bytes_received = 0
     chunk_size = 1024
 
-    with open(filepath, 'wb') as f:
+    with open(filepath, 'ab') as f:     #ab = append binary kant wb =write binary (so even if you downloaded 20% before, when you open it with 'wb', you erase the partial file)
         while bytes_received < filesize:
             chunk = sock.recv(chunk_size)
             if not chunk:
@@ -118,7 +124,7 @@ def download_file(sock, filename):
             percent = (bytes_received / filesize) * 100
             sys.stdout.write(f"\rDownloading: {percent:.2f}%")
             sys.stdout.flush()
-            time.sleep(0.05)
+            time.sleep(0.01)
 
     log(f"Download complete: {filename}")
     print(f"\nDownloaded {filename}")
