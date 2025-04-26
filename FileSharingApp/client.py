@@ -52,35 +52,50 @@ def upload_file(sock, filepath):
     filename = os.path.basename(filepath)
     filesize = os.path.getsize(filepath)
 
-    filehash = compute_sha256(filepath) #1  Transfer Corruption Prevention  #This uses the full function we discussed earlier to compute a unique SHA-256 hash of the file.
+    filehash = compute_sha256(filepath)
 
-    log(f"Uploading file: {filename} ({filesize} bytes) with SHA-256: {filehash}") #filehash (e.g., 972bb2...d8d9597c0)
-    sock.send(f"UPLOAD {filename} {filesize} {filehash}".encode()) #1Transfer Corruption Prevention
+    log(f"Uploading file: {filename} ({filesize} bytes) with SHA-256: {filehash}")
+    sock.send(f"UPLOAD {filename} {filesize} {filehash}".encode())
 
-    recv_ack = sock.recv(1024).decode()
+    server_reply = sock.recv(1024).decode()
 
-    if recv_ack == "READY_REC":
-        bytes_sent = 0
-        chunk_size = 1024
+    if server_reply == "FILE_EXISTS":
+        print(f"The file '{filename}' already exists on server.")
+        decision = input("Type 'OVERWRITE' to replace or 'NEW_VERSION' to create new version: ").strip().upper()
+        sock.send(decision.encode())
 
-        with open(filepath, 'rb') as f:
-            while bytes_sent < filesize:
-                chunk = f.read(chunk_size)
-                if not chunk:
-                    break
-                sock.sendall(chunk)
-                bytes_sent += len(chunk)
+        server_reply = sock.recv(1024).decode()
+        if server_reply.startswith("NEW_FILENAME"):
+            _, new_name = server_reply.split(maxsplit=1)
+            filename = new_name
+            print(f"New file name: {filename}")
+        else:
+            print(f"Overwriting {filename} on server.")
+    elif server_reply == "NO_FILE_EXISTS":
+        pass  # No file conflict
 
-                percent = (bytes_sent / filesize) * 100
-                sys.stdout.write(f"\rUploading: {percent:.2f}%")
-                sys.stdout.flush()
-                time.sleep(0.01)
+    ready = sock.recv(1024).decode()
+    if ready != "READY_REC":
+        print("Server not ready.")
+        return
 
-        log(f"Upload complete: {filename}")
-        print(f"\nUploaded {filename}")
-    else:
-        log(f"UPLOAD FAILED: Server not ready for {filename}")
-        print("Server did not accept the upload request.")
+    bytes_sent = 0
+    chunk_size = 1024
+    with open(filepath, 'rb') as f:
+        while bytes_sent < filesize:
+            chunk = f.read(chunk_size)
+            if not chunk:
+                break
+            sock.sendall(chunk)
+            bytes_sent += len(chunk)
+
+            percent = (bytes_sent / filesize) * 100
+            sys.stdout.write(f"\rUploading: {percent:.2f}%")
+            sys.stdout.flush()
+            time.sleep(0.01)
+
+    log(f"Upload complete: {filename}")
+    print(f"\nUploaded {filename}")
 
 def download_file(sock, filename):
     filepath = os.path.join(DOWNLOAD_DIR, filename)

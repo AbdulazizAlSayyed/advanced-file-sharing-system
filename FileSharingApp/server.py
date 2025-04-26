@@ -58,19 +58,29 @@ def generate_versioned_filename(directory, filename):
         new_filename = f"{name}_v{version}{ext}"
     return new_filename
 
-def handle_upload(conn, parts, addr): 
-    filename = parts[1]                  # e.g., "test0.txt"
-    filesize = int(parts[2])             # e.g., 144
-    client_hash = parts[3]     #1 Transfer Corruption Prevention         # hash sent by client
-
-   # This ensures no overwrite — adds _v2 if needed
-    filename = generate_versioned_filename(FILES_DIR, filename)
+def handle_upload(conn, parts, addr):
+    filename = parts[1]
+    filesize = int(parts[2])
+    client_hash = parts[3]
+    
     filepath = os.path.join(FILES_DIR, filename)
 
-# Tell client server is ready
+    if os.path.exists(filepath):
+        conn.send("FILE_EXISTS".encode())   # 🔥 tell client file already exists
+
+        user_decision = conn.recv(1024).decode()  # wait for client choice
+        if user_decision.upper() == "NEW_VERSION":
+            filename = generate_versioned_filename(FILES_DIR, filename)
+            filepath = os.path.join(FILES_DIR, filename)
+            conn.send(f"NEW_FILENAME {filename}".encode())
+        else:
+            conn.send(f"OVERWRITE {filename}".encode())
+    else:
+        conn.send("NO_FILE_EXISTS".encode())
+
+    # Now ready to receive the file
     conn.send("READY_REC".encode())
 
-    # Receive file in chunks and save it
     chunk_size = 1024
     with open(filepath, 'wb') as f:
         bytes_received = 0
@@ -81,12 +91,10 @@ def handle_upload(conn, parts, addr):
             f.write(chunk)
             bytes_received += len(chunk)
 
-    log(f"File received: {filename} from {addr}")# Log successful reception
-    # Server computes SHA-256 hash of the received file
-    server_hash = compute_sha256(filepath) #1Transfer Corruption Prevention
-        
-    # Compare server's hash to what the client sent
-    if server_hash == client_hash:  #1 Transfer Corruption Prevention     #After receiving the file, the server recomputes the hash using the same method, and checks:
+    log(f"File received: {filename} from {addr}")
+
+    server_hash = compute_sha256(filepath)
+    if server_hash == client_hash:
         log(f"Hash match for {filename} ok")
     else:
         log(f"Hash mismatch for {filename} ❌ Possible corruption")
