@@ -1,0 +1,8 @@
+[2025-04-26 14:14:38] Server started and listening for connections
+[2025-04-26 14:14:42] New client connected from ('10.21.134.83', 49380)
+[2025-04-26 14:14:50] File received: test0.txt from ('10.21.134.83', 49380)
+[2025-04-26 14:14:50] Hash match for test0.txt ok
+[2025-04-26 14:14:58] Sent test0.txt to ('10.21.134.83', 49380)
+[2025-04-26 14:15:20] Connection closed with ('10.21.134.83', 49380)
+[2025-04-26 14:16:03] Server shutdown manually by KeyboardInterrupt
+[2025-04-26 14:16:03] Server socket closed.

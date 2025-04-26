@@ -1,18 +1,1 @@
-[2025-04-23 09:18:26.504037] Client log file created
-[2025-04-23 09:18:26.505546] Connected to server at 10.21.146.204:5050
-[2025-04-23 09:18:36.920629] Command: upload test0.txt
-[2025-04-23 09:18:36.921642] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
-[2025-04-23 09:18:36.975141] Upload complete: test0.txt
-[2025-04-23 09:18:42.474828] Command: download test0.txt
-[2025-04-23 09:19:43.466562] Connected to server at 10.21.146.204:5050
-[2025-04-23 09:19:49.597738] Command: download test0.txt
-[2025-04-23 09:19:49.600578] Downloading file: test0.txt (144 bytes)
-[2025-04-23 09:19:49.652399] Download complete: test0.txt
-[2025-04-23 09:19:49.653406] Hash match after download: test0.txt
-[2025-04-23 09:20:28.586326] Command: upload test0.txt
-[2025-04-23 09:20:28.587545] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
-[2025-04-23 09:20:28.639405] Upload complete: test0.txt
-[2025-04-23 09:20:41.851839] Command: download test0_v2.txt
-[2025-04-23 09:20:41.853358] Downloading file: test0_v2.txt (144 bytes)
-[2025-04-23 09:20:41.906038] Download complete: test0_v2.txt
-[2025-04-23 09:20:41.908046] Hash match after download: test0_v2.txt
+[2025-04-26 14:14:42.713573] Client log file created

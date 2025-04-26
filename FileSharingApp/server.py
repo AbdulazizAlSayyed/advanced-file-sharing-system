@@ -4,7 +4,9 @@ import os
 import hashlib
 from datetime import datetime
 
-HOST = '10.21.146.204'
+
+
+HOST = '10.21.134.83'
 PORT = 5050
 
 FILES_DIR = 'files'
@@ -19,8 +21,22 @@ if not os.path.exists(LOG_FILE):
         f.write(f"[{datetime.now()}] Server log file created\n")
 
 def log(message):
-    with open(LOG_FILE, 'a', encoding='utf-8') as f:
-        f.write(f"[{datetime.now()}] {message}\n")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    today_date = datetime.now().strftime("%Y-%m-%d")  # Example: 2025-04-26
+
+    # Determine the log type
+    lower_msg = message.lower()
+    if "error" in lower_msg or "failed" in lower_msg or "❌" in lower_msg:
+        log_file = os.path.join(LOG_DIR, f'error_log_{today_date}.txt')
+    elif "warning" in lower_msg or "high memory" in lower_msg or "overload" in lower_msg:
+        log_file = os.path.join(LOG_DIR, f'warning_log_{today_date}.txt')
+    else:
+        log_file = os.path.join(LOG_DIR, f'info_log_{today_date}.txt')
+    
+    # Write the log
+    with open(log_file, 'a', encoding='utf-8') as f:
+        f.write(f"[{timestamp}] {message}\n")
+
 
 def compute_sha256(filepath):
     sha256 = hashlib.sha256() #Creates a new SHA-256 hash object using Python’s built-in hashlib module.
@@ -98,6 +114,7 @@ def download_file_handler(conn, cmd_parts, addr):
         log(f"Sent {filename} to {addr}")
     else:
         conn.send("ERROR FILE NOT FOUND".encode())
+        log(f"ERROR FILE NOT FOUND: {filename} requested by {addr}")
 
 def handle_list(conn):
     files = os.listdir(FILES_DIR)
@@ -136,13 +153,30 @@ def main():
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((HOST, PORT))
     server.listen()
+    server.settimeout(1.0)  # Very important!
+
     print(f"[SERVER STARTED] Listening on {HOST}:{PORT}")
     log("Server started and listening for connections")
 
-    while True:
-        conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
-        thread.start()
+    try:
+        running = True
+        while running:
+            try:
+                conn, addr = server.accept()
+                thread = threading.Thread(target=handle_client, args=(conn, addr))
+                thread.start()
+            except socket.timeout:
+                continue  # No connection, just retry
+    except KeyboardInterrupt:
+        print("\n[SERVER SHUTDOWN] Stopping server...")
+        log("Server shutdown manually by KeyboardInterrupt")
+        running = False
+    except Exception as e:
+        log(f"Server error: {e}")
+    finally:
+        server.close()
+        print("[SERVER CLOSED]")
+        log("Server socket closed.")
 
 if __name__ == "__main__":
     main()

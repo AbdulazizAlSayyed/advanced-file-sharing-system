@@ -1,14 +1,1 @@
-[2025-04-23 09:18:17.887581] Server log file created
-[2025-04-23 09:18:17.889194] Server started and listening for connections
-[2025-04-23 09:18:26.506555] New client connected from ('10.21.146.204', 58792)
-[2025-04-23 09:18:36.924151] File received: test0.txt from ('10.21.146.204', 58792)
-[2025-04-23 09:18:36.926151] Hash match for test0.txt ok
-[2025-04-23 09:18:42.482372] Sent test0.txt to ('10.21.146.204', 58792)
-[2025-04-23 09:18:42.483886] Connection closed with ('10.21.146.204', 58792)
-[2025-04-23 09:19:38.134109] Server started and listening for connections
-[2025-04-23 09:19:43.468070] New client connected from ('10.21.146.204', 58919)
-[2025-04-23 09:19:49.600578] Sent test0.txt to ('10.21.146.204', 58919)
-[2025-04-23 09:20:28.589064] File received: test0_v2.txt from ('10.21.146.204', 58919)
-[2025-04-23 09:20:28.591074] Hash match for test0_v2.txt ok
-[2025-04-23 09:20:41.853358] Sent test0_v2.txt to ('10.21.146.204', 58919)
-[2025-04-23 09:43:02.053012] Connection closed with ('10.21.146.204', 58919)
+[2025-04-26 14:14:38.996803] Server log file created

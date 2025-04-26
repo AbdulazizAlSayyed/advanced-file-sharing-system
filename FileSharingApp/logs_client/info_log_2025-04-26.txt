@@ -1,0 +1,15 @@
+[2025-04-26 14:14:42] Connected to server at 10.21.134.83:5050
+[2025-04-26 14:14:45] Command: LIST
+[2025-04-26 14:14:45] Listed files on server
+[2025-04-26 14:14:50] Command: upload test0.txt
+[2025-04-26 14:14:50] Uploading file: test0.txt (144 bytes) with SHA-256: 972bb290f949168444905eefc571c93f1f6497e5a2e7fc58371a391d8d9597c0
+[2025-04-26 14:14:50] Upload complete: test0.txt
+[2025-04-26 14:14:58] Command: download test0.txt
+[2025-04-26 14:14:58] Downloading file: test0.txt (144 bytes)
+[2025-04-26 14:14:58] Download complete: test0.txt
+[2025-04-26 14:14:58] Hash match after download: test0.txt
+[2025-04-26 14:15:01] Command: download test01.txt
+[2025-04-26 14:15:17] Command: LIST
+[2025-04-26 14:15:17] Listed files on server
+[2025-04-26 14:15:20] Command: EXIT
+[2025-04-26 14:15:20] Connection closed.

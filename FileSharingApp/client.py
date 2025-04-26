@@ -5,7 +5,7 @@ import time
 import hashlib
 from datetime import datetime
 
-HOST = '10.21.146.204'
+HOST = '10.21.134.83'
 PORT = 5050
 
 DOWNLOAD_DIR = 'received'
@@ -20,8 +20,21 @@ if not os.path.exists(LOG_FILE):
         f.write(f"[{datetime.now()}] Client log file created\n")
 
 def log(message):
-    with open(LOG_FILE, 'a') as f:
-        f.write(f"[{datetime.now()}] {message}\n")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    today_date = datetime.now().strftime("%Y-%m-%d")  # Example: 2025-04-26
+
+    # Determine the log type
+    lower_msg = message.lower()
+    if "error" in lower_msg or "failed" in lower_msg or "❌" in lower_msg:
+        log_file = os.path.join(LOG_DIR, f'error_log_{today_date}.txt')
+    elif "warning" in lower_msg or "high memory" in lower_msg or "overload" in lower_msg:
+        log_file = os.path.join(LOG_DIR, f'warning_log_{today_date}.txt')
+    else:
+        log_file = os.path.join(LOG_DIR, f'info_log_{today_date}.txt')
+    
+    # Write the log
+    with open(log_file, 'a', encoding='utf-8') as f:
+        f.write(f"[{timestamp}] {message}\n")
 
 def compute_sha256(filepath):
     sha256 = hashlib.sha256()
@@ -72,21 +85,24 @@ def upload_file(sock, filepath):
 def download_file(sock, filename):
     sock.send(f"DOWNLOAD {filename}".encode())  # send request to server
 
-    server_hash = sock.recv(1024).decode()      # step 1: receive server hash
-    sock.send("HASH_RECEIVED".encode())         # send ack for hash
-
-    size_data = sock.recv(1024).decode()        # step 2: receive file size
-
-    if size_data == "ERROR FILE NOT FOUND":
+    server_hash = sock.recv(1024).decode()  # receive server response (could be error)
+    
+    # 🛑 First check if it was an error
+    if server_hash == "ERROR FILE NOT FOUND":
         print("The file does not exist on the server.")
         log(f"DOWNLOAD FAILED: {filename} not found on server")
-        return
+        return  # ❗ immediately return without sending "HASH_RECEIVED"
+
+    # ✅ Otherwise continue normally
+    sock.send("HASH_RECEIVED".encode())  # send ack for hash
+
+    size_data = sock.recv(1024).decode()
 
     filesize = int(size_data)
-    sock.send("READY_TO_REC".encode())          # ack server to start sending file
+    sock.send("READY_TO_REC".encode())  # ack server to start sending file
     log(f"Downloading file: {filename} ({filesize} bytes)")
 
-    filepath = os.path.join(DOWNLOAD_DIR, filename)  # ✅ define filepath before using it
+    filepath = os.path.join(DOWNLOAD_DIR, filename)
 
     bytes_received = 0
     chunk_size = 1024
@@ -107,7 +123,6 @@ def download_file(sock, filename):
     log(f"Download complete: {filename}")
     print(f"\nDownloaded {filename}")
 
-    # ✅ Compute hash after download
     local_hash = compute_sha256(filepath)
     if local_hash == server_hash:
         log(f"Hash match after download: {filename}")
@@ -115,6 +130,7 @@ def download_file(sock, filename):
     else:
         log(f"Hash mismatch after download: {filename}")
         print("❌ File may be corrupted. no")
+
 
 def list_available_files(sock):
     sock.send("LIST".encode())
