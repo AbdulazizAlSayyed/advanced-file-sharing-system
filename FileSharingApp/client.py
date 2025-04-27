@@ -110,7 +110,7 @@ def upload_file(sock, filepath, decision=None, progress_callback=None):  # Modif
     log(f"Upload complete: {filename}")
     print(f"\nUploaded {filename}")
 
-def download_file(sock, filename):
+def download_file(sock, filename, existing_size=0, progress_callback=None): #modified by Abdullah for flask
     filepath = os.path.join(DOWNLOAD_DIR, filename)
     if os.path.exists(filepath):
         existing_size = os.path.getsize(filepath)
@@ -149,10 +149,19 @@ def download_file(sock, filename):
             f.write(chunk)
             bytes_received += len(chunk)
 
-            percent = (bytes_received / filesize) * 100
-            sys.stdout.write(f"\rDownloading: {percent:.2f}%")
-            sys.stdout.flush()
-            time.sleep(0.01)
+            # for flask
+            if progress_callback:
+                progress_callback(bytes_received, filesize)
+            else:
+                percent = (bytes_received / filesize) * 100
+                sys.stdout.write(f"\rDownloading: {percent:.2f}%")
+                sys.stdout.flush()
+                time.sleep(0.01)
+
+            # percent = (bytes_received / filesize) * 100
+            # sys.stdout.write(f"\rDownloading: {percent:.2f}%")
+            # sys.stdout.flush()
+            # time.sleep(0.01)
 
     log(f"Download complete: {filename}")
     print(f"\nDownloaded {filename}")
