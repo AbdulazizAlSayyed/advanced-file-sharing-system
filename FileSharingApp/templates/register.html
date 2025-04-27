@@ -1,17 +1,15 @@
-<!--The form sends the username and password to the server (Flask) for checking-->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - File Sharing</title>
+    <title>Register - File Sharing</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <div class="login-form">
-        <h2>Login</h2>
+        <h2>Create Account</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
         <div class="alert {{ category }}">{{ message }}</div>
@@ -20,9 +18,9 @@
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required><br>
             <input type="password" name="password" placeholder="Password" required><br>
-            <button type="submit" id="login">Login</button>
-            <p>Don't have an account? <a href="{{ url_for('register') }}">Create one</a></p>
+            <button type="submit">Create Account</button>
         </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
     </div>
 </body>
 

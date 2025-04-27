@@ -21,18 +21,22 @@ if not os.path.exists(LOG_FILE):
 
 def log(message):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    today_date = datetime.now().strftime("%Y-%m-%d")  # Example: 2025-04-26
+    year = datetime.now().strftime("%Y")
+    month = datetime.now().strftime("%m")
+    day = datetime.now().strftime("%d")
 
-    # Determine the log type
+    # Create folder: logs_server/YYYY/MM/DD/
+    daily_folder = os.path.join(LOG_DIR, year, month, day)
+    os.makedirs(daily_folder, exist_ok=True)
+
     lower_msg = message.lower()
     if "error" in lower_msg or "failed" in lower_msg or "❌" in lower_msg:
-        log_file = os.path.join(LOG_DIR, f'error_log_{today_date}.txt')
+        log_file = os.path.join(daily_folder, 'error.txt')
     elif "warning" in lower_msg or "high memory" in lower_msg or "overload" in lower_msg:
-        log_file = os.path.join(LOG_DIR, f'warning_log_{today_date}.txt')
+        log_file = os.path.join(daily_folder, 'warning.txt')
     else:
-        log_file = os.path.join(LOG_DIR, f'info_log_{today_date}.txt')
-    
-    # Write the log
+        log_file = os.path.join(daily_folder, 'info.txt')
+
     with open(log_file, 'a', encoding='utf-8') as f:
         f.write(f"[{timestamp}] {message}\n")
 

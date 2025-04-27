@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .dashboard {
+            padding: 20px;
+        }
+
+        .logs-tree {
+            text-align: left;
+            margin-left: 50px;
+        }
+
+        .folder {
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .content {
+            margin-left: 20px;
+            display: none;
+        }
+
+        .logfile {
+            cursor: pointer;
+            color: blue;
+            margin-left: 20px;
+        }
+
+        .log-content {
+            margin-left: 40px;
+            background: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <h1 style="text-align: center;">Server Logs</h1>
+        <a href="{{ url_for('dashboard') }}"><button>Back to Dashboard</button></a>
+
+        <div class="logs-tree">
+            {% for year, months in tree.items() %}
+            <div>
+                <div class="folder" onclick="toggleFolder('year-{{ year }}')">📁 {{ year }}</div>
+                <div id="year-{{ year }}" class="content">
+                    {% for month, days in months.items() %}
+                    <div>
+                        <div class="folder" onclick="toggleFolder('month-{{ year }}-{{ month }}')">📂 {{ month }}</div>
+                        <div id="month-{{ year }}-{{ month }}" class="content">
+                            {% for day, files in days.items() %}
+                            <div>
+                                <div class="folder" onclick="toggleFolder('day-{{ year }}-{{ month }}-{{ day }}')">📅 {{
+                                    day }}</div>
+                                <div id="day-{{ year }}-{{ month }}-{{ day }}" class="content">
+                                    {% for file in files %}
+                                    <p class="logfile"
+                                        onclick="loadLog('{{ year }}', '{{ month }}', '{{ day }}', '{{ file }}')">📝 {{
+                                        file }}</p>
+                                    <div id="content-{{ year }}-{{ month }}-{{ day }}-{{ file|replace('.', '') }}"
+                                        class="log-content"></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function toggleFolder(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        function loadLog(year, month, day, filename) {
+            var divId = "content-" + year + "-" + month + "-" + day + "-" + filename.replace('.', '');
+            var contentDiv = document.getElementById(divId);
+
+            if (contentDiv.innerHTML !== "") {
+                // Toggle if already loaded
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+                return;
+            }
+
+            fetch(`/logs/read/${year}/${month}/${day}/${filename}`)
+                .then(response => response.text())
+                .then(data => {
+                    contentDiv.innerHTML = "<pre>" + data + "</pre>";
+                    contentDiv.style.display = "block";
+                })
+                .catch(error => {
+                    contentDiv.innerHTML = "Error loading log.";
+                    contentDiv.style.display = "block";
+                });
+        }
+    </script>
+</body>
+
+</html>

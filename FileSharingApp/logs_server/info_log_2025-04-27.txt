@@ -316,3 +316,20 @@
 [2025-04-27 15:07:32] Connection closed with ('10.21.134.17', 59056)
 [2025-04-27 15:11:42] Server shutdown manually by KeyboardInterrupt
 [2025-04-27 15:11:42] Server socket closed.
+[2025-04-27 15:15:40] Server started and listening for connections
+[2025-04-27 15:15:58] New client connected from ('10.21.134.17', 59171)
+[2025-04-27 15:15:58] Connection closed with ('10.21.134.17', 59171)
+[2025-04-27 15:16:36] New client connected from ('10.21.134.17', 59186)
+[2025-04-27 15:16:36] Connection closed with ('10.21.134.17', 59186)
+[2025-04-27 15:16:39] New client connected from ('10.21.134.17', 59194)
+[2025-04-27 15:16:39] Connection closed with ('10.21.134.17', 59194)
+[2025-04-27 15:17:27] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 15:17:27] Server socket closed.
+[2025-04-27 15:35:24] Server started and listening for connections
+[2025-04-27 15:35:49] New client connected from ('10.21.134.17', 59397)
+[2025-04-27 15:35:49] Connection closed with ('10.21.134.17', 59397)
+[2025-04-27 15:36:01] New client connected from ('10.21.134.17', 59402)
+[2025-04-27 15:36:01] Deleted Project_Sp24_25.pdf on admin request.
+[2025-04-27 15:36:01] Connection closed with ('10.21.134.17', 59402)
+[2025-04-27 15:37:01] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 15:37:01] Server socket closed.

@@ -256,5 +256,129 @@ def download_fetch(filename):
         return "Not found", 404
     return send_file(path, as_attachment=True)
 
+
+#----admin managing files
+
+@app.route('/admin/files')
+def admin_files():
+    if session.get('role') != 'admin':
+        flash('Access denied.', 'danger')
+        return redirect(url_for('dashboard'))
+
+    # like in download to list the files
+    sock = socket.socket()
+    sock.connect((SERVER_IP, SERVER_PORT))
+    files = list_available_files(sock)
+    sock.close()
+
+    return render_template('manage_files.html', files=files)
+
+@app.route('/admin/delete_file', methods=['POST'])
+def delete_file():
+    if session.get('role') != 'admin':
+        return jsonify({'error':'not allowed'}), 403
+
+    filename = request.get_json().get('filename')
+    if not filename:
+        return jsonify({'error':'no filename'}), 400
+
+    # same thing connect and use methods
+    sock = socket.socket()
+    sock.connect((SERVER_IP, SERVER_PORT))
+    sock.send(f"DELETE {filename}".encode())
+    resp = sock.recv(1024).decode()
+    sock.close()
+
+    if resp == "DELETED":
+        return jsonify({'success': True})
+    else:
+        return jsonify({'error': resp}), 500
+
+
+#by abdulaziz
+# Register page handle
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        role = request.form.get('role', 'user')  # default role is 'user'
+
+        # Hash the password
+        hashed_password = hash_password(password)
+
+        # Save user to database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Check if username already exists
+        cursor.execute('SELECT * FROM users WHERE username=%s', (username,))
+        existing_user = cursor.fetchone()
+        if existing_user:
+            conn.close()
+            flash('Username already exists.', 'danger')
+            return redirect(url_for('register'))
+
+        # Insert new user
+        cursor.execute('INSERT INTO users (username, password_hash, role) VALUES (%s, %s, %s)',
+                       (username, hashed_password, role))
+        conn.commit()
+        conn.close()
+
+        flash('Account created successfully! Please log in.', 'success')
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+@app.route('/logs')
+def view_logs():
+    if 'username' not in session or session.get('role') != 'admin':
+        flash('Access denied. Admins only.', 'danger')
+        return redirect(url_for('dashboard'))
+
+    log_dir = 'logs_server'
+    tree = {}
+
+    # Build tree: {year: {month: {day: [files]}}}
+    for year in sorted(os.listdir(log_dir)):
+        year_path = os.path.join(log_dir, year)
+        if not os.path.isdir(year_path):
+            continue
+
+        tree[year] = {}
+        for month in sorted(os.listdir(year_path)):
+            month_path = os.path.join(year_path, month)
+            if not os.path.isdir(month_path):
+                continue
+
+            tree[year][month] = {}
+            for day in sorted(os.listdir(month_path)):
+                day_path = os.path.join(month_path, day)
+                if not os.path.isdir(day_path):
+                    continue
+
+                files = sorted(os.listdir(day_path))
+                tree[year][month][day] = files
+
+    return render_template('view_logs.html', tree=tree)
+
+
+
+@app.route('/logs/read/<year>/<month>/<day>/<filename>')
+def read_log(year, month, day, filename):
+    if 'username' not in session or session.get('role') != 'admin':
+        return "Access Denied", 403
+
+    path = os.path.join('logs_server', year, month, day, filename)
+    if not os.path.isfile(path):
+        return "Log not found", 404
+
+    with open(path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    return content
+#------------
+
+
 if __name__ == '__main__':
     app.run(debug=True)

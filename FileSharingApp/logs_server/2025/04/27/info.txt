@@ -1,0 +1,9 @@
+[2025-04-27 15:42:03] Server started and listening for connections
+[2025-04-27 15:43:23] New client connected from ('10.21.134.17', 59570)
+[2025-04-27 15:43:23] Connection closed with ('10.21.134.17', 59570)
+[2025-04-27 15:43:56] New client connected from ('10.21.134.17', 59618)
+[2025-04-27 15:43:56] Connection closed with ('10.21.134.17', 59618)
+[2025-04-27 15:44:01] New client connected from ('10.21.134.17', 59630)
+[2025-04-27 15:44:01] Connection closed with ('10.21.134.17', 59630)
+[2025-04-27 15:47:03] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 15:47:03] Server socket closed.

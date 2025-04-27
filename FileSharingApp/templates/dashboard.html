@@ -17,9 +17,10 @@
             <!-- Download button -->
             <a href="/download"><button>Download File</button></a>
 
-            <!-- Only show "View Logs" button if the user is an admin -->
+            <!-- Only show "View Logs" and "Manage Files" buttons if the user is an admin -->
             {% if role == 'admin' %}
             <a href="/logs"><button>View Logs</button></a>
+            <a href="{{ url_for('admin_files') }}"><button class="btn">Manage Files</button></a>
             {% endif %}
             <a href="/logout"><button>Logout</button></a>
         </div>
