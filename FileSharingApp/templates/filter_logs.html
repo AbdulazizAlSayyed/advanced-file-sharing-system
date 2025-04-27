@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="dashboard">
+        <h1>Filter Logs</h1>
+        <a href="{{ url_for('dashboard') }}"><button>Back to Dashboard</button></a>
+
+        <form method="POST">
+            <label>Year:</label>
+            <select name="year" onchange="this.form.submit()">
+                <option value="">Select Year</option>
+                {% for year in years %}
+                <option value="{{ year }}" {% if selected_year==year %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+            </select>
+
+            {% if selected_year %}
+            <label>Month:</label>
+            <select name="month" onchange="this.form.submit()">
+                <option value="">Select Month</option>
+                {% for month in months %}
+                <option value="{{ month }}" {% if selected_month==month %}selected{% endif %}>{{ month }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+
+            {% if selected_month %}
+            <label>Day:</label>
+            <select name="day" onchange="this.form.submit()">
+                <option value="">Select Day</option>
+                {% for day in days %}
+                <option value="{{ day }}" {% if selected_day==day %}selected{% endif %}>{{ day }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </form>
+
+        <br>
+
+        {% if day_logs %}
+        <h2>{{ selected_year }}-{{ selected_month }}-{{ selected_day }}</h2>
+        {% for filename, file_logs in day_logs %}
+        <div class="log-section">
+            <h3>{{ filename }}</h3>
+            <div class="log-content">
+                {% for line in file_logs %}
+                <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+
+</html>

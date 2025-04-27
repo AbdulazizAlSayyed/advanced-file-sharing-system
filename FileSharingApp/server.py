@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 
-HOST = '10.21.134.17'
+HOST = '10.21.134.83'
 PORT = 5050
 
 FILES_DIR = 'files'

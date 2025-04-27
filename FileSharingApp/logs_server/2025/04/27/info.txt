@@ -1,24 +1,20 @@
-[2025-04-27 15:42:03] Server started and listening for connections
-[2025-04-27 15:43:23] New client connected from ('10.21.134.17', 59570)
-[2025-04-27 15:43:23] Connection closed with ('10.21.134.17', 59570)
-[2025-04-27 15:43:56] New client connected from ('10.21.134.17', 59618)
-[2025-04-27 15:43:56] Connection closed with ('10.21.134.17', 59618)
-[2025-04-27 15:44:01] New client connected from ('10.21.134.17', 59630)
-[2025-04-27 15:44:01] Connection closed with ('10.21.134.17', 59630)
-[2025-04-27 15:47:03] Server shutdown manually by KeyboardInterrupt
-[2025-04-27 15:47:03] Server socket closed.
-[2025-04-27 15:56:51] Server started and listening for connections
-[2025-04-27 15:57:48] New client connected from ('10.21.134.17', 59797)
-[2025-04-27 15:57:48] File received: Project_Sp24_25.pdf from ('10.21.134.17', 59797)
-[2025-04-27 15:57:48] Connection closed with ('10.21.134.17', 59797)
-[2025-04-27 15:58:20] New client connected from ('10.21.134.17', 59811)
-[2025-04-27 15:58:33] New client connected from ('10.21.134.17', 59821)
-[2025-04-27 15:58:33] File received: Project_Sp24_25.pdf from ('10.21.134.17', 59821)
-[2025-04-27 15:58:33] Hash match for Project_Sp24_25.pdf ok
-[2025-04-27 15:58:33] Connection closed with ('10.21.134.17', 59821)
-[2025-04-27 15:59:07] New client connected from ('10.21.134.17', 59853)
-[2025-04-27 15:59:07] Deleted Project_Sp24_25.pdf on admin request.
-[2025-04-27 15:59:07] Connection closed with ('10.21.134.17', 59853)
-[2025-04-27 15:59:15] Connection closed with ('10.21.134.17', 59811)
-[2025-04-27 15:59:18] Server shutdown manually by KeyboardInterrupt
-[2025-04-27 15:59:18] Server socket closed.
+[2025-04-27 23:40:12] Server started and listening for connections
+[2025-04-27 23:40:20] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 23:40:20] Server socket closed.
+[2025-04-27 23:40:34] Server started and listening for connections
+[2025-04-27 23:40:45] New client connected from ('10.21.134.83', 60717)
+[2025-04-27 23:41:13] File received: test0_v6.txt from ('10.21.134.83', 60717)
+[2025-04-27 23:41:13] Hash match for test0_v6.txt ok
+[2025-04-27 23:41:29] Sent test0.txt to ('10.21.134.83', 60717)
+[2025-04-27 23:41:29] Connection closed with ('10.21.134.83', 60717)
+[2025-04-27 23:41:41] New client connected from ('10.21.134.83', 60722)
+[2025-04-27 23:41:55] Connection closed with ('10.21.134.83', 60722)
+[2025-04-27 23:43:00] New client connected from ('10.21.134.83', 60749)
+[2025-04-27 23:43:04] Connection closed with ('10.21.134.83', 60749)
+[2025-04-27 23:43:41] New client connected from ('10.21.134.83', 60759)
+[2025-04-27 23:44:09] File received: Critique-Abdulaziz-Al-Sayyed.docx from ('10.21.134.83', 60759)
+[2025-04-27 23:44:09] Hash match for Critique-Abdulaziz-Al-Sayyed.docx ok
+[2025-04-27 23:44:15] File received: Critique-Abdulaziz-Al-Sayyed_v2.docx from ('10.21.134.83', 60759)
+[2025-04-27 23:44:15] Connection closed with ('10.21.134.83', 60759)
+[2025-04-27 23:44:43] New client connected from ('10.21.134.83', 60763)
+[2025-04-27 23:52:47] Connection closed with ('10.21.134.83', 60763)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Manage Server Files</title>
@@ -14,14 +15,17 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .info {
       flex: 1;
     }
+
     .info .meta {
       display: block;
       font-size: 0.9rem;
       color: #555;
     }
+
     .btn {
       padding: .5rem 1rem;
       background: #e74c3c;
@@ -30,16 +34,19 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .btn.delete[disabled] {
       background: #aaa;
       cursor: not-allowed;
     }
+
     .btn.back {
       background: #4CAF50;
       margin-top: 1rem;
     }
   </style>
 </head>
+
 <body>
   <div class="dashboard">
     <h1>Manage Server Files</h1>
@@ -54,8 +61,8 @@
 
   <script>
     // files passed from Flask as an array of {name,size,modified}
-    const serverFiles = {{ files|tojson|safe }};
-    const container   = document.getElementById('filesContainer');
+    const serverFiles = {{ files| tojson | safe }};
+    const container = document.getElementById('filesContainer');
 
     serverFiles.forEach(f => {
       const card = document.createElement('div');
@@ -63,7 +70,7 @@
       card.innerHTML = `
         <div class="info">
           <strong>${f.name}</strong>
-          <span class="meta">${(f.size/1024).toFixed(1)} KB &bull; ${f.modified}</span>
+          <span class="meta">${(f.size / 1024).toFixed(1)} KB &bull; ${f.modified}</span>
         </div>
         <button class="btn delete">Delete</button>
       `;
@@ -92,4 +99,5 @@
     });
   </script>
 </body>
+
 </html>

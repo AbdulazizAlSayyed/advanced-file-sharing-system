@@ -333,16 +333,16 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        role = request.form.get('role', 'user')  # default role is 'user'
+        role = request.form.get('role', 'user')  
 
-        # Hash the password
+        # Hash
         hashed_password = hash_password(password)
 
-        # Save user to database
+        
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        # Check if username already exists
+        # username already exists??
         cursor.execute('SELECT * FROM users WHERE username=%s', (username,))
         existing_user = cursor.fetchone()
         if existing_user:
@@ -350,7 +350,7 @@ def register():
             flash('Username already exists.', 'danger')
             return redirect(url_for('register'))
 
-        # Insert new user
+        # Insert record 
         cursor.execute('INSERT INTO users (username, password_hash, role) VALUES (%s, %s, %s)',
                        (username, hashed_password, role))
         conn.commit()
@@ -370,7 +370,7 @@ def view_logs():
     log_dir = 'logs_server'
     tree = {}
 
-    # Build tree: {year: {month: {day: [files]}}}
+    # Build tree: year then month then day then files
     for year in sorted(os.listdir(log_dir)):
         year_path = os.path.join(log_dir, year)
         if not os.path.isdir(year_path):
@@ -412,4 +412,4 @@ def read_log(year, month, day, filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)

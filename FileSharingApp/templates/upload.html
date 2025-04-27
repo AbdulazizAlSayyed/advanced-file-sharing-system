@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Upload File</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
   <div class="dashboard">
     <h1>Upload a File</h1>
 
-    <!-- Flash messages (login, errors, etc) -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-      {% for category, message in messages %}
-        <div class="alert {{ category }}">{{ message }}</div>
-      {% endfor %}
+    {% for category, message in messages %}
+    <div class="alert {{ category }}">{{ message }}</div>
+    {% endfor %}
     {% endwith %}
 
-    <!-- 1) Initial upload form -->
     <form id="uploadForm" enctype="multipart/form-data">
       <input type="file" name="file" id="fileInput" required><br><br>
       <button id="uploadButton" type="submit">Upload</button>
     </form>
 
-    <!-- 2) Decision buttons, hidden until needed -->
     <div id="decisionArea" style="display:none; margin-top:20px;">
       <p style="color: #444;">A file with that name already exists on the server. What would you like to do?</p>
       <button id="overwriteBtn" type="button">Overwrite</button>
       <button id="newVersionBtn" type="button">New Version</button>
     </div>
 
-    <!-- 3) Progress bar, hidden until the actual socket upload begins -->
     <div id="progressBar" style="display:none; margin-top:20px;">
       <div style="width:100%; background-color:#ddd;">
-        <div id="progress"
-             style="width:0%; height:30px; background-color:#4CAF50;
+        <div id="progress" style="width:0%; height:30px; background-color:#4CAF50;
                     text-align:center; color:white;">
           0%
         </div>
@@ -57,7 +54,7 @@
 
     let upload_id;
 
-    // Step 1: start the handshake
+    // handshake
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       uploadButton.disabled = true;
@@ -69,7 +66,6 @@
         return;
       }
 
-      // POST to /upload_init
       const resp = await fetch('/upload_init', {
         method: 'POST',
         body: new FormData(form),
@@ -78,11 +74,11 @@
       upload_id = data.upload_id;
 
       if (data.state === 'FILE_EXISTS') {
-        // show decision buttons
+
         decisionArea.style.display = 'block';
       }
       else if (data.state === 'STARTED') {
-        // immediately begin polling
+
         startPolling();
       }
       else {
@@ -91,7 +87,7 @@
       }
     });
 
-    // Step 2: user picks Overwrite or New Version
+    //user picks Overwrite or New Version
     overwriteBtn.addEventListener('click', () => startWithDecision('OVERWRITE'));
     newVersionBtn.addEventListener('click', () => startWithDecision('NEW_VERSION'));
 
@@ -99,7 +95,6 @@
       decisionArea.style.display = 'none';
       progressBar.style.display = 'block';
 
-      // POST decision to /upload_start
       await fetch('/upload_start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -109,7 +104,7 @@
       startPolling();
     }
 
-    // Step 3: poll upload progress
+    //poll upload progress
     function startPolling() {
       progressBar.style.display = 'block';
       const interval = setInterval(async () => {
@@ -126,4 +121,5 @@
     }
   </script>
 </body>
+
 </html>

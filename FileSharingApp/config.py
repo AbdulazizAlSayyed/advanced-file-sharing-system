@@ -5,5 +5,7 @@ DB_USER = 'root'
 DB_PASSWORD = ''
 DB_NAME = 'filesharing'
 
-SERVER_IP = '10.21.134.17'
+#SERVER_IP = '10.21.134.17' abdullah ip 
+SERVER_IP = '10.21.134.83' #Abdulaziz ip
+
 SERVER_PORT = 5050

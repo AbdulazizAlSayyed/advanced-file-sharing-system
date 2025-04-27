@@ -1,3 +1,26 @@
-[2025-04-27 15:43:23] Listed files on server
-[2025-04-27 15:43:56] Listed files on server
-[2025-04-27 15:44:01] Listed files on server
+[2025-04-27 23:40:45] Connected to server at 10.21.134.83:5050
+[2025-04-27 23:40:59] Command: upload test0.txt
+[2025-04-27 23:40:59] Uploading file: test0.txt (152 bytes) with SHA-256: 1d60f21c155b1310f7eae385e68faf5303cd7b8f0c47cfe3c897342609da675b
+[2025-04-27 23:41:13] Upload complete: test0_v6.txt
+[2025-04-27 23:41:29] Command: download test0.txt
+[2025-04-27 23:41:29] Downloading file: test0.txt (152 bytes)
+[2025-04-27 23:41:29] Download complete: test0.txt
+[2025-04-27 23:41:29] Hash match after download: test0.txt
+[2025-04-27 23:41:41] Connected to server at 10.21.134.83:5050
+[2025-04-27 23:41:55] Command: upload ../Final Networks Report.docx
+[2025-04-27 23:41:55] Uploading file: Final Networks Report.docx (1975490 bytes) with SHA-256: 619ca59b2ffc515049e25a0a682744b52e61dbf6f4f0359fade58146ffc77a73
+[2025-04-27 23:42:54] Command: upload C:\Users\RSS\Desktop\FileSharingApp\Final Networks Report.docx
+[2025-04-27 23:42:54] Uploading file: Final Networks Report.docx (1975490 bytes) with SHA-256: 619ca59b2ffc515049e25a0a682744b52e61dbf6f4f0359fade58146ffc77a73
+[2025-04-27 23:43:00] Connected to server at 10.21.134.83:5050
+[2025-04-27 23:43:04] Command: upload C:\Users\RSS\Desktop\FileSharingApp\Final Networks Report.docx
+[2025-04-27 23:43:04] Uploading file: Final Networks Report.docx (1975490 bytes) with SHA-256: 619ca59b2ffc515049e25a0a682744b52e61dbf6f4f0359fade58146ffc77a73
+[2025-04-27 23:43:32] Command: upload C:/Users/RSS\Desktop/FileSharingApp/Final Networks Report.docx
+[2025-04-27 23:43:32] Uploading file: Final Networks Report.docx (1975490 bytes) with SHA-256: 619ca59b2ffc515049e25a0a682744b52e61dbf6f4f0359fade58146ffc77a73
+[2025-04-27 23:43:41] Connected to server at 10.21.134.83:5050
+[2025-04-27 23:44:09] Command: upload C:\Users\RSS\Desktop\Critique-Abdulaziz-Al-Sayyed.docx
+[2025-04-27 23:44:09] Uploading file: Critique-Abdulaziz-Al-Sayyed.docx (18610 bytes) with SHA-256: 03088972fec545e376489ad58b72641db2a96bb66f7636e7ef07f72b173adecd
+[2025-04-27 23:44:09] Upload complete: Critique-Abdulaziz-Al-Sayyed.docx
+[2025-04-27 23:44:11] Command: upload C:\Users\RSS\Desktop\Critique-Abdulaziz-Al-Sayyed.docx
+[2025-04-27 23:44:11] Uploading file: Critique-Abdulaziz-Al-Sayyed.docx (18610 bytes) with SHA-256: 03088972fec545e376489ad58b72641db2a96bb66f7636e7ef07f72b173adecd
+[2025-04-27 23:44:43] Connected to server at 10.21.134.83:5050
+[2025-04-27 23:44:47] Command: upload test02.txt
