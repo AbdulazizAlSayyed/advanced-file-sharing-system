@@ -118,6 +118,7 @@ python server.py
 ---
 
 ## Contact
+-**Abdulaziz Al Sayyed:**
 - **Phone**: +961 70738343
 - **Email**: abdulaziz.alsayyed@lau.edu
 
