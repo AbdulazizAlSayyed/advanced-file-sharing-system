@@ -6,3 +6,7 @@
 [2025-04-27 13:31:19] Error with client ('10.21.134.17', 54533): [WinError 10054] An existing connection was forcibly closed by the remote host
 [2025-04-27 13:33:59] Error with client ('10.21.134.17', 54926): [WinError 10054] An existing connection was forcibly closed by the remote host
 [2025-04-27 13:35:32] Error with client ('10.21.134.17', 55199): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 14:29:51] Error with client ('10.21.134.17', 56065): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 14:29:51] Error with client ('10.21.134.17', 55896): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 14:32:55] Error with client ('10.21.134.83', 58550): invalid literal for int() with base 10: 'DAWR.pdf'
+[2025-04-27 14:33:24] Error with client ('10.21.134.83', 58574): invalid literal for int() with base 10: 'EASTERN'

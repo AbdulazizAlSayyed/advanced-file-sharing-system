@@ -4,15 +4,19 @@ import socket
 import hashlib
 import os
 import client #for using client.py
+from client import list_available_files, download_file
 import uuid
 from threading import Thread
 from flask import jsonify
+from flask import send_file
+from datetime import datetime
 from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, SERVER_IP, SERVER_PORT #uses the global configuration
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Used to secure user sessions
 upload_progress = {}
 pending_uploads = {} #states as init then decision (overwrite or new) then upload
+download_progress = {}
 
 # Db connection
 def get_db_connection():
@@ -187,6 +191,69 @@ def upload_start():
 def get_upload_progress(upload_id):
     pct = upload_progress.get(upload_id, 0)
     return jsonify({'percent': pct})
+
+
+
+# --------download----------
+
+#download button in dashboard
+@app.route('/download')
+def download_form():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('download.html')
+
+@app.route('/download_list')
+def download_list():
+    if 'username' not in session:
+        return jsonify({'error':'not logged in'}), 403
+
+    # open a fresh socket and uses client method
+    sock = socket.socket()
+    sock.connect((SERVER_IP, SERVER_PORT))
+    files = list_available_files(sock)
+    sock.close()
+
+    return jsonify({'files': files})
+
+@app.route('/download_init', methods=['POST'])
+def download_init():
+    if 'username' not in session:
+        return jsonify({'error':'not logged in'}), 403
+
+    filename = request.json.get('filename')
+    if not filename:
+        return jsonify({'error':'no filename'}), 400
+
+    sock = socket.socket()
+    sock.connect((SERVER_IP, SERVER_PORT))
+
+    # create an ID for tracking progress
+    dl_id = str(uuid.uuid4())
+    download_progress[dl_id] = 0
+
+    def prog_cb(sent, total):
+        download_progress[dl_id] = int((sent/total)*100)
+
+    # client.download_file
+    def bg():
+        download_file(sock, filename, 0, prog_cb)
+        download_progress[dl_id] = 100 # so the bar finishes if last integer was not 100
+        sock.close()
+
+    Thread(target=bg, daemon=True).start()
+    return jsonify({'download_id': dl_id})
+
+@app.route('/download_progress/<download_id>')
+def get_download_progress(download_id):
+    return jsonify({'percent': download_progress.get(download_id, 0)})
+
+@app.route('/download_fetch/<filename>')
+def download_fetch(filename):
+    path = os.path.join('received', filename)
+    if not os.path.exists(path):
+        return "Not found", 404
+    return send_file(path, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)

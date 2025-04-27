@@ -1,0 +1,7 @@
+//required to install to run the app
+
+pip install flask flask-mysql flask-login flask-socketio pymysql
+
+python app.py //to run the flask app
+
+abed

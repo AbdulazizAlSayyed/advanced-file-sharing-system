@@ -182,9 +182,10 @@ def list_available_files(sock):
         return
 
     sock.send("READY_FOR_LIST".encode())
-    files = sock.recv(4096).decode()
-    print("Files available on the server:\n" + files)
+    data = sock.recv(4096).decode()
+    print("Files available on the server:\n" + data)
     log("Listed files on server")
+    return data.splitlines() #modified for flask
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

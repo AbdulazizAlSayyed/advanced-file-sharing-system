@@ -60,3 +60,13 @@
 [2025-04-27 13:28:18] Uploading file: Project_Sp24_25.pdf (719455 bytes) with SHA-256: 658bcbbaa28de39fff2777517d99f6dff5fe0576e7c08c7ccdbcdad8b3e71ba2
 [2025-04-27 13:33:37] Uploading file: Project_Sp24_25.pdf (719455 bytes) with SHA-256: 658bcbbaa28de39fff2777517d99f6dff5fe0576e7c08c7ccdbcdad8b3e71ba2
 [2025-04-27 13:35:11] Uploading file: Project_Sp24_25.pdf (719455 bytes) with SHA-256: 658bcbbaa28de39fff2777517d99f6dff5fe0576e7c08c7ccdbcdad8b3e71ba2
+[2025-04-27 14:25:18] Listed files on server
+[2025-04-27 14:25:26] Downloading file: abd.txt (20100 bytes)
+[2025-04-27 14:25:58] Downloading file: abd_v2.txt (154112 bytes)
+[2025-04-27 14:29:55] Listed files on server
+[2025-04-27 14:30:01] Downloading file: required.txt (152 bytes)
+[2025-04-27 14:30:01] Download complete: required.txt
+[2025-04-27 14:30:01] Hash match after download: required.txt
+[2025-04-27 14:30:30] Downloading file: test0_v3.txt (141 bytes)
+[2025-04-27 14:30:30] Download complete: test0_v3.txt
+[2025-04-27 14:30:30] Hash match after download: test0_v3.txt
