@@ -92,7 +92,6 @@ python server.py
 - Server Logs View (Admin Only)
 - User Dashboard (Restricted Access)
 
-*(Screenshots available in the `screenshots/` folder)*
 
 ---
 
