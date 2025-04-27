@@ -1,0 +1,2 @@
+[2025-04-27 15:57:48] Hash mismatch for Project_Sp24_25.pdf ❌ Possible corruption
+[2025-04-27 15:59:15] Error with client ('10.21.134.17', 59811): [WinError 10054] An existing connection was forcibly closed by the remote host

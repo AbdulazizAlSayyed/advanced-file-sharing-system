@@ -17,6 +17,7 @@ app.secret_key = 'your_secret_key_here'  # Used to secure user sessions
 upload_progress = {}
 pending_uploads = {} #states as init then decision (overwrite or new) then upload
 download_progress = {}
+FILES_DIR = 'files'
 
 # Db connection
 def get_db_connection():
@@ -208,13 +209,28 @@ def download_list():
     if 'username' not in session:
         return jsonify({'error':'not logged in'}), 403
 
-    # open a fresh socket and uses client method
-    sock = socket.socket()
-    sock.connect((SERVER_IP, SERVER_PORT))
-    files = list_available_files(sock)
-    sock.close()
+    # # open a fresh socket and uses client method
+    # sock = socket.socket()
+    # sock.connect((SERVER_IP, SERVER_PORT))
+    # files = list_available_files(sock)
+    # sock.close()
 
-    return jsonify({'files': files})
+    # return jsonify({'files': files})
+
+    # works here because on the same laptop, otherwise needs change in the method to list files in server or client .py
+    entries = []
+    for name in os.listdir(FILES_DIR):
+        path = os.path.join(FILES_DIR, name)
+        if not os.path.isfile(path):
+            continue
+        st = os.stat(path)
+        entries.append({
+            'name':     name,
+            'size':     st.st_size,
+            'modified': datetime.fromtimestamp(st.st_mtime) \
+                               .strftime("%Y-%m-%d %H:%M:%S")
+        })
+    return jsonify({'files': entries})
 
 @app.route('/download_init', methods=['POST'])
 def download_init():
@@ -265,13 +281,28 @@ def admin_files():
         flash('Access denied.', 'danger')
         return redirect(url_for('dashboard'))
 
-    # like in download to list the files
-    sock = socket.socket()
-    sock.connect((SERVER_IP, SERVER_PORT))
-    files = list_available_files(sock)
-    sock.close()
+    # # like in download to list the files
+    # sock = socket.socket()
+    # sock.connect((SERVER_IP, SERVER_PORT))
+    # files = list_available_files(sock)
+    # sock.close()
 
-    return render_template('manage_files.html', files=files)
+    # return render_template('manage_files.html', files=files)
+
+    # smae as in download_list() because on same laptop
+    entries = []
+    for name in os.listdir(FILES_DIR):
+        path = os.path.join(FILES_DIR, name)
+        if not os.path.isfile(path):
+            continue
+        st = os.stat(path)
+        entries.append({
+            'name':     name,
+            'size':     st.st_size,
+            'modified': datetime.fromtimestamp(st.st_mtime) \
+                               .strftime("%Y-%m-%d %H:%M:%S")
+        })
+    return render_template('manage_files.html', files=entries)
 
 @app.route('/admin/delete_file', methods=['POST'])
 def delete_file():

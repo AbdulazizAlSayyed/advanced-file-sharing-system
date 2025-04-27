@@ -14,6 +14,14 @@
       justify-content: space-between;
       align-items: center;
     }
+    .info {
+      flex: 1;
+    }
+    .info .meta {
+      display: block;
+      font-size: 0.9rem;
+      color: #555;
+    }
     .btn {
       padding: .5rem 1rem;
       background: #e74c3c;
@@ -44,37 +52,38 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-
-    //files passed from flask
+  <script>
+    // files passed from Flask as an array of {name,size,modified}
     const serverFiles = {{ files|tojson|safe }};
+    const container   = document.getElementById('filesContainer');
 
-    const container = document.getElementById('filesContainer');
-
-    serverFiles.forEach(name => {
+    serverFiles.forEach(f => {
       const card = document.createElement('div');
       card.className = 'file-card';
       card.innerHTML = `
-        <span>${name}</span>
+        <div class="info">
+          <strong>${f.name}</strong>
+          <span class="meta">${(f.size/1024).toFixed(1)} KB &bull; ${f.modified}</span>
+        </div>
         <button class="btn delete">Delete</button>
       `;
 
       const btn = card.querySelector('.delete');
       btn.addEventListener('click', async () => {
-        if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+        if (!confirm(`Delete “${f.name}”?`)) return;
         btn.disabled = true;
 
         const res = await fetch('/admin/delete_file', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename: name })
+          body: JSON.stringify({ filename: f.name })
         });
         const result = await res.json();
 
         if (result.success) {
           card.remove();
         } else {
-          alert('Error: ' + (result.error || 'Unable to delete file.'));
+          alert('Error: ' + (result.error || 'Unable to delete'));
           btn.disabled = false;
         }
       });
