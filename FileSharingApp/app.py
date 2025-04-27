@@ -222,8 +222,9 @@ def download_init():
         return jsonify({'error':'not logged in'}), 403
 
     filename = request.json.get('filename')
-    if not filename:
-        return jsonify({'error':'no filename'}), 400
+    local = os.path.join('received', filename)
+    if os.path.exists(local):
+        os.remove(local)
 
     sock = socket.socket()
     sock.connect((SERVER_IP, SERVER_PORT))

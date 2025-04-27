@@ -141,7 +141,14 @@ def download_file(sock, filename, existing_size=0, progress_callback=None): #mod
     bytes_received = 0
     chunk_size = 1024
 
-    with open(filepath, 'ab') as f:     #ab = append binary kant wb =write binary (so even if you downloaded 20% before, when you open it with 'wb', you erase the partial file)
+    
+    #with open(filepath, mode) as f:     #ab = append binary kant wb =write binary (so even if you downloaded 20% before, when you open it with 'wb', you erase the partial file)
+    # modified by Abdullah for downloading from flask even if the file is in received directory server side
+    if existing_size > 0:
+        mode = 'ab'
+    else:
+        mode = 'wb'
+    with open(filepath, mode) as f:
         while bytes_received < filesize:
             chunk = sock.recv(chunk_size)
             if not chunk:
