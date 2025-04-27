@@ -18,3 +18,6 @@
 [2025-04-27 23:44:15] Connection closed with ('10.21.134.83', 60759)
 [2025-04-27 23:44:43] New client connected from ('10.21.134.83', 60763)
 [2025-04-27 23:52:47] Connection closed with ('10.21.134.83', 60763)
+[2025-04-27 23:59:34] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 23:59:34] Server socket closed.
+[2025-04-27 23:59:36] Server started and listening for connections

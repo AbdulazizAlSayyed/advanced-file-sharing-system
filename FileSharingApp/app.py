@@ -412,4 +412,5 @@ def read_log(year, month, day, filename):
 
 
 if __name__ == '__main__':
+    # this makes it possible for devices on the same local network to run this app my laptop acts as the host and the other devices just have to enter using the port
     app.run(host='0.0.0.0',port=5000,debug=True)

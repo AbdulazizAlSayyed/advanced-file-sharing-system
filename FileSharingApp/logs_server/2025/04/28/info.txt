@@ -1,0 +1,2 @@
+[2025-04-28 00:03:26] Server shutdown manually by KeyboardInterrupt
+[2025-04-28 00:03:26] Server socket closed.
