@@ -99,8 +99,6 @@ python server.py
 ## Challenges Faced
 - Configuring the server for multi-device connections across the network.
 - Handling file integrity across variable network conditions.
-- Firewall port configuration to allow external access to the web server.
-- Managing multithreaded synchronization for stable server performance.
 
 ---
 
