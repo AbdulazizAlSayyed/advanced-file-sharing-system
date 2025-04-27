@@ -1,2 +1,8 @@
 [2025-04-27 00:11:44] Error with client ('10.21.134.17', 51349): invalid literal for int() with base 10: '2025-04-26'
 [2025-04-27 01:30:43] Error with client ('10.21.134.17', 52061): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 02:54:17] Error with client ('10.21.134.17', 52652): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 13:09:16] Error with client ('10.21.134.17', 54142): invalid literal for int() with base 10: '2025-04-27'
+[2025-04-27 13:13:19] Error with client ('10.21.134.17', 54190): invalid literal for int() with base 10: '2025-04-27'
+[2025-04-27 13:31:19] Error with client ('10.21.134.17', 54533): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 13:33:59] Error with client ('10.21.134.17', 54926): [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-04-27 13:35:32] Error with client ('10.21.134.17', 55199): [WinError 10054] An existing connection was forcibly closed by the remote host

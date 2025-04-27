@@ -1,80 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Upload File</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Upload File</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div class="dashboard">
+    <h1>Upload a File</h1>
 
-    <div class="dashboard">
-        <h1>Upload a File</h1>
+    <!-- Flash messages (login, errors, etc) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
 
-        <!-- success or error -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, message in messages %}
-                <div class="alert {{ category }}">{{ message }}</div>
-            {% endfor %}
-        {% endwith %}
+    <!-- 1) Initial upload form -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" name="file" id="fileInput" required><br><br>
+      <button id="uploadButton" type="submit">Upload</button>
+    </form>
 
-        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" id="fileInput" required><br><br>
-            <button type="submit">Upload</button>
-        </form>
-
-        <!-- Progress bar (hidden at first) -->
-        <div id="progressBar" style="display:none; margin-top:20px;">
-            <div style="width: 100%; background-color: #ddd;">
-                <div id="progress" style="width: 0%; height: 30px; background-color: #4CAF50; text-align:center; color:white;">0%</div>
-            </div>
-        </div>
-
-        <div class="buttons">
-            <a href="/dashboard"><button>Back to Dashboard</button></a>
-        </div>
+    <!-- 2) Decision buttons, hidden until needed -->
+    <div id="decisionArea" style="display:none; margin-top:20px;">
+      <p style="color: #444;">A file with that name already exists on the server. What would you like to do?</p>
+      <button id="overwriteBtn" type="button">Overwrite</button>
+      <button id="newVersionBtn" type="button">New Version</button>
     </div>
 
-    <!-- to update progress of progress bar-->
-    <script>
-        const form = document.getElementById('uploadForm');
-        const progressBar = document.getElementById('progressBar');
-        const progress = document.getElementById('progress');
-    
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            if (!file) return;
-    
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/upload', true);
-    
-            xhr.upload.onprogress = function(e) {
-                if (e.lengthComputable) {
-                    const percentComplete = (e.loaded / e.total) * 100;
-                    progress.style.width = percentComplete + '%';
-                    progress.innerHTML = Math.round(percentComplete) + '%';
-                }
-            };
-    
-            xhr.onloadstart = function() {
-                progressBar.style.display = 'block';
-            };
-    
-            xhr.onload = function() {
-                if (xhr.status == 200) {
-                    // show a flash message using a parameter when reloading
-                    window.location.href = "/upload?uploaded=true";
-                } else {
-                    window.location.href = "/upload?uploaded=false";
-                }
-            };
-    
-            const formData = new FormData();
-            formData.append('file', file);
-            xhr.send(formData);
-        });
-    </script>
+    <!-- 3) Progress bar, hidden until the actual socket upload begins -->
+    <div id="progressBar" style="display:none; margin-top:20px;">
+      <div style="width:100%; background-color:#ddd;">
+        <div id="progress"
+             style="width:0%; height:30px; background-color:#4CAF50;
+                    text-align:center; color:white;">
+          0%
+        </div>
+      </div>
+    </div>
 
+    <div class="buttons">
+      <a href="/dashboard"><button>Back to Dashboard</button></a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('fileInput');
+    const uploadButton = document.getElementById('uploadButton');
+    const decisionArea = document.getElementById('decisionArea');
+    const overwriteBtn = document.getElementById('overwriteBtn');
+    const newVersionBtn = document.getElementById('newVersionBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progress = document.getElementById('progress');
+
+    let upload_id;
+
+    // Step 1: start the handshake
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      uploadButton.disabled = true;
+
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select a file first.');
+        uploadButton.disabled = false;
+        return;
+      }
+
+      // POST to /upload_init
+      const resp = await fetch('/upload_init', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await resp.json();
+      upload_id = data.upload_id;
+
+      if (data.state === 'FILE_EXISTS') {
+        // show decision buttons
+        decisionArea.style.display = 'block';
+      }
+      else if (data.state === 'STARTED') {
+        // immediately begin polling
+        startPolling();
+      }
+      else {
+        alert('Unexpected response. Check console.');
+        console.error(data);
+      }
+    });
+
+    // Step 2: user picks Overwrite or New Version
+    overwriteBtn.addEventListener('click', () => startWithDecision('OVERWRITE'));
+    newVersionBtn.addEventListener('click', () => startWithDecision('NEW_VERSION'));
+
+    async function startWithDecision(decision) {
+      decisionArea.style.display = 'none';
+      progressBar.style.display = 'block';
+
+      // POST decision to /upload_start
+      await fetch('/upload_start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ upload_id, decision }),
+      });
+
+      startPolling();
+    }
+
+    // Step 3: poll upload progress
+    function startPolling() {
+      progressBar.style.display = 'block';
+      const interval = setInterval(async () => {
+        const res = await fetch(`/upload_progress/${upload_id}`);
+        const { percent } = await res.json();
+        progress.style.width = percent + '%';
+        progress.textContent = percent + '%';
+
+        if (percent >= 100) {
+          clearInterval(interval);
+          setTimeout(() => window.location.href = '/upload', 1000);
+        }
+      }, 200);
+    }
+  </script>
 </body>
 </html>

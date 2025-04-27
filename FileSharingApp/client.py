@@ -43,7 +43,7 @@ def compute_sha256(filepath):
             sha256.update(chunk)
     return sha256.hexdigest()
 
-def upload_file(sock, filepath, decision=None):  # Modified by Abdullah for Flask App
+def upload_file(sock, filepath, decision=None, progress_callback=None):  # Modified by Abdullah for Flask App
     if not os.path.exists(filepath):
         print(f"File not found: {filepath}")
         log(f"UPLOAD FAILED: File not found: {filepath}")
@@ -91,10 +91,21 @@ def upload_file(sock, filepath, decision=None):  # Modified by Abdullah for Flas
             sock.sendall(chunk)
             bytes_sent += len(chunk)
 
-            percent = (bytes_sent / filesize) * 100
-            sys.stdout.write(f"\rUploading: {percent:.2f}%")
-            sys.stdout.flush()
-            time.sleep(0.01)
+            # if for flask pass the progress to the app
+            if progress_callback:
+                progress_callback(bytes_sent, filesize)
+            else:
+                #regular
+                percent = (bytes_sent / filesize) * 100
+                sys.stdout.write(f"\rUploading: {percent:.2f}%")
+                sys.stdout.flush()
+                time.sleep(0.01)
+            
+            # modified for flask app
+            # percent = (bytes_sent / filesize) * 100
+            # sys.stdout.write(f"\rUploading: {percent:.2f}%")
+            # sys.stdout.flush()
+            # time.sleep(0.01)
 
     log(f"Upload complete: {filename}")
     print(f"\nUploaded {filename}")

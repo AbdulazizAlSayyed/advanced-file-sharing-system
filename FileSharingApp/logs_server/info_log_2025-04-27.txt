@@ -44,3 +44,135 @@
 [2025-04-27 01:30:13] Server socket closed.
 [2025-04-27 01:30:43] Connection closed with ('10.21.134.17', 52061)
 [2025-04-27 01:31:08] Server started and listening for connections
+[2025-04-27 02:28:03] New client connected from ('10.21.134.17', 52465)
+[2025-04-27 02:28:10] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52465)
+[2025-04-27 02:28:10] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 02:28:10] Connection closed with ('10.21.134.17', 52465)
+[2025-04-27 02:28:31] New client connected from ('10.21.134.17', 52473)
+[2025-04-27 02:44:13] File received: Project_Sp24_25_v2.pdf from ('10.21.134.17', 52473)
+[2025-04-27 02:44:13] Hash match for Project_Sp24_25_v2.pdf ok
+[2025-04-27 02:44:13] Connection closed with ('10.21.134.17', 52473)
+[2025-04-27 02:44:40] New client connected from ('10.21.134.17', 52583)
+[2025-04-27 02:44:58] File received: Project_Sp24_25_v3.pdf from ('10.21.134.17', 52583)
+[2025-04-27 02:44:58] Hash match for Project_Sp24_25_v3.pdf ok
+[2025-04-27 02:44:58] Connection closed with ('10.21.134.17', 52583)
+[2025-04-27 02:51:21] New client connected from ('10.21.134.17', 52644)
+[2025-04-27 02:51:30] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52644)
+[2025-04-27 02:51:30] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 02:51:30] Connection closed with ('10.21.134.17', 52644)
+[2025-04-27 02:51:38] New client connected from ('10.21.134.17', 52652)
+[2025-04-27 02:54:17] Connection closed with ('10.21.134.17', 52652)
+[2025-04-27 02:54:22] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 02:54:22] Server socket closed.
+[2025-04-27 03:09:42] Server started and listening for connections
+[2025-04-27 03:10:05] New client connected from ('10.21.134.17', 52855)
+[2025-04-27 03:10:13] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52855)
+[2025-04-27 03:10:13] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:10:13] Connection closed with ('10.21.134.17', 52855)
+[2025-04-27 03:10:43] New client connected from ('10.21.134.17', 52870)
+[2025-04-27 03:10:50] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52870)
+[2025-04-27 03:10:50] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:10:50] Connection closed with ('10.21.134.17', 52870)
+[2025-04-27 03:10:52] New client connected from ('10.21.134.17', 52877)
+[2025-04-27 03:11:00] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52877)
+[2025-04-27 03:11:00] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:11:00] Connection closed with ('10.21.134.17', 52877)
+[2025-04-27 03:11:05] New client connected from ('10.21.134.17', 52879)
+[2025-04-27 03:11:13] File received: Project_Sp24_25.pdf from ('10.21.134.17', 52879)
+[2025-04-27 03:11:13] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:11:13] Connection closed with ('10.21.134.17', 52879)
+[2025-04-27 03:22:39] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 03:22:39] Server socket closed.
+[2025-04-27 03:33:10] Server started and listening for connections
+[2025-04-27 03:34:43] New client connected from ('10.21.134.17', 53147)
+[2025-04-27 03:34:43] Connection closed with ('10.21.134.17', 53147)
+[2025-04-27 03:41:52] New client connected from ('10.21.134.17', 53215)
+[2025-04-27 03:41:52] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53215)
+[2025-04-27 03:41:52] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:41:52] Connection closed with ('10.21.134.17', 53215)
+[2025-04-27 03:43:28] New client connected from ('10.21.134.17', 53239)
+[2025-04-27 03:43:28] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53239)
+[2025-04-27 03:43:28] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:43:28] Connection closed with ('10.21.134.17', 53239)
+[2025-04-27 03:44:16] New client connected from ('10.21.134.17', 53255)
+[2025-04-27 03:44:16] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53255)
+[2025-04-27 03:44:16] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:44:16] Connection closed with ('10.21.134.17', 53255)
+[2025-04-27 03:46:56] New client connected from ('10.21.134.17', 53342)
+[2025-04-27 03:47:04] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53342)
+[2025-04-27 03:47:04] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:47:04] Connection closed with ('10.21.134.17', 53342)
+[2025-04-27 03:47:46] New client connected from ('10.21.134.17', 53350)
+[2025-04-27 03:47:53] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53350)
+[2025-04-27 03:47:53] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 03:47:53] Connection closed with ('10.21.134.17', 53350)
+[2025-04-27 03:48:12] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 03:48:12] Server socket closed.
+[2025-04-27 13:01:17] Server started and listening for connections
+[2025-04-27 13:01:54] New client connected from ('10.21.134.17', 53923)
+[2025-04-27 13:02:02] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53923)
+[2025-04-27 13:02:02] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:02:02] Connection closed with ('10.21.134.17', 53923)
+[2025-04-27 13:04:34] New client connected from ('10.21.134.17', 53987)
+[2025-04-27 13:04:34] File received: Project_Sp24_25.pdf from ('10.21.134.17', 53987)
+[2025-04-27 13:04:34] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:04:34] Connection closed with ('10.21.134.17', 53987)
+[2025-04-27 13:06:28] New client connected from ('10.21.134.17', 54075)
+[2025-04-27 13:06:28] Connection closed with ('10.21.134.17', 54075)
+[2025-04-27 13:07:35] New client connected from ('10.21.134.17', 54119)
+[2025-04-27 13:07:35] File received: Project_Sp24_25.pdf from ('10.21.134.17', 54119)
+[2025-04-27 13:07:35] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:07:35] Connection closed with ('10.21.134.17', 54119)
+[2025-04-27 13:07:57] New client connected from ('10.21.134.17', 54130)
+[2025-04-27 13:07:57] File received: Project_Sp24_25.pdf from ('10.21.134.17', 54130)
+[2025-04-27 13:07:57] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:07:57] Connection closed with ('10.21.134.17', 54130)
+[2025-04-27 13:09:16] New client connected from ('10.21.134.17', 54142)
+[2025-04-27 13:09:16] Connection closed with ('10.21.134.17', 54142)
+[2025-04-27 13:13:01] New client connected from ('10.21.134.17', 54184)
+[2025-04-27 13:13:01] File received: Project_Sp24_25.pdf from ('10.21.134.17', 54184)
+[2025-04-27 13:13:01] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:13:01] Connection closed with ('10.21.134.17', 54184)
+[2025-04-27 13:13:19] New client connected from ('10.21.134.17', 54190)
+[2025-04-27 13:13:19] Connection closed with ('10.21.134.17', 54190)
+[2025-04-27 13:16:08] New client connected from ('10.21.134.17', 54218)
+[2025-04-27 13:16:08] File received: Project_Sp24_25.pdf from ('10.21.134.17', 54218)
+[2025-04-27 13:16:08] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:16:08] Connection closed with ('10.21.134.17', 54218)
+[2025-04-27 13:16:22] New client connected from ('10.21.134.17', 54233)
+[2025-04-27 13:16:59] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 13:16:59] Server socket closed.
+[2025-04-27 13:17:52] Server started and listening for connections
+[2025-04-27 13:18:03] New client connected from ('10.21.134.17', 54382)
+[2025-04-27 13:18:03] File received: Project_Sp24_25.pdf from ('10.21.134.17', 54382)
+[2025-04-27 13:18:03] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:18:03] Connection closed with ('10.21.134.17', 54382)
+[2025-04-27 13:28:08] New client connected from ('10.21.134.17', 54533)
+[2025-04-27 13:31:19] Connection closed with ('10.21.134.17', 54533)
+[2025-04-27 13:33:37] New client connected from ('10.21.134.17', 54926)
+[2025-04-27 13:33:59] Connection closed with ('10.21.134.17', 54926)
+[2025-04-27 13:34:23] Server shutdown manually by KeyboardInterrupt
+[2025-04-27 13:34:23] Server socket closed.
+[2025-04-27 13:34:37] Server started and listening for connections
+[2025-04-27 13:35:11] New client connected from ('10.21.134.17', 55199)
+[2025-04-27 13:35:32] Connection closed with ('10.21.134.17', 55199)
+[2025-04-27 13:41:53] New client connected from ('10.21.134.17', 55440)
+[2025-04-27 13:41:53] File received: Project_Sp24_25.pdf from ('10.21.134.17', 55440)
+[2025-04-27 13:41:53] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:41:53] Connection closed with ('10.21.134.17', 55440)
+[2025-04-27 13:42:09] New client connected from ('10.21.134.17', 55452)
+[2025-04-27 13:42:16] File received: Project_Sp24_25_v2.pdf from ('10.21.134.17', 55452)
+[2025-04-27 13:42:16] Hash match for Project_Sp24_25_v2.pdf ok
+[2025-04-27 13:42:16] Connection closed with ('10.21.134.17', 55452)
+[2025-04-27 13:42:26] New client connected from ('10.21.134.17', 55468)
+[2025-04-27 13:42:27] File received: Project_Sp24_25.pdf from ('10.21.134.17', 55468)
+[2025-04-27 13:42:27] Hash match for Project_Sp24_25.pdf ok
+[2025-04-27 13:42:27] Connection closed with ('10.21.134.17', 55468)
+[2025-04-27 13:43:35] New client connected from ('10.21.134.17', 55483)
+[2025-04-27 13:43:35] File received: required.txt from ('10.21.134.17', 55483)
+[2025-04-27 13:43:35] Hash match for required.txt ok
+[2025-04-27 13:43:35] Connection closed with ('10.21.134.17', 55483)
+[2025-04-27 13:43:56] New client connected from ('10.21.134.17', 55498)
+[2025-04-27 13:44:00] File received: required.txt from ('10.21.134.17', 55498)
+[2025-04-27 13:44:00] Hash match for required.txt ok
+[2025-04-27 13:44:00] Connection closed with ('10.21.134.17', 55498)
