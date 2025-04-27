@@ -50,38 +50,37 @@ The system emphasizes **scalability**, **reliability**, and **security**, formin
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/advanced-file-sharing-system.git
-cd advanced-file-sharing-system
+git clone https://github.com/AbdulazizAlSayyed/advanced-file-sharing-system.git
+cd advanced-file-sharing-system/FileSharingApp
 ```
 
-### 2. Set up the Server
+### 2. Install Required Python Packages
 ```bash
-cd server
-python server.py
+pip install -r required.txt
+```
+*or manually:*
+```bash
+pip install flask flask-mysql flask-login flask-socketio pymysql
 ```
 
-### 3. Set up the Client (CLI)
+### 3. Set up and Run the Flask Web Interface
 ```bash
-cd client
-python client.py
-```
-
-### 4. Set up the Web Interface (Flask App)
-```bash
-cd web
 python app.py
 ```
 
-### 5. Database Setup
-- Create a MySQL database.
-- Import the provided SQL script (if available) to set up user authentication tables.
-- Update `config.py` with your database credentials.
+### 4. In another terminal, set up and run the TCP Server
+```bash
+python server.py
+```
+*(Make sure to change the host IP inside `server.py` if needed)*
 
-### 6. Configuration
-Modify `config.py` for:
-- Server IP address
-- Port numbers
-- Database credentials
+---
+
+## Notes
+- **config.py** contains server IP, database credentials, and other settings.
+- **received/** folder stores downloaded files.
+- **logs_client/** and **logs_server/** folders store log files.
+- **templates/** and **static/** are used for Flask web application.
 
 ---
 
